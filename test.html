@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      div {
+        /* 4rem * 4 buttons, 4px * 3 gaps, 4px border = 16rem + 16px = 17rem */
+        width: 17rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        border: 2px solid tomato;
+      }
+
+      button {
+        width: 4rem;
+        height: 4rem;
+        flex-shrink: 0;
+      }
+
+      button.big {
+        width: calc(8rem);
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <button>AC</button>
+      <button class="big">DEL</button>
+      <button>/</button>
+
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>*</button>
+
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>-</button>
+
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>+</button>
+
+      <button>0</button>
+      <button>.</button>
+      <button class="big">=</button>
+    </div>
+  </body>
+</html>
