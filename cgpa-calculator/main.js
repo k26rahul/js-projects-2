@@ -117,24 +117,33 @@ const courses = {
 const coursesArr = Object.keys(courses);
 
 coursesArr.forEach(course => {
-  const html = `
-          <tr>
-            <td class="course-name">${courses[course].fullname}</td>
-            <td>${courses[course].credit}</td>
-            <td>
-              <select id="${course}-input" onchange="calculate()">
-                <option value="" selected>Not done</option>
-                <option value="s">S</option>
-                <option value="a">A</option>
-                <option value="b">B</option>
-                <option value="c">C</option>
-                <option value="d">D</option>
-                <option value="e">E</option>
-              </select>
-            </td>
-          </tr>
-  `;
-  document.querySelector('tbody').innerHTML += html;
+  // const html = `
+  //         <tr>
+  //           <td class="course-name">${courses[course].fullname}</td>
+  //           <td>${courses[course].credit}</td>
+  //           <td>
+  //             <select id="${course}-input" onchange="calculate()">
+  //               <option value="" selected>Not done</option>
+  //               <option value="s">S</option>
+  //               <option value="a">A</option>
+  //               <option value="b">B</option>
+  //               <option value="c">C</option>
+  //               <option value="d">D</option>
+  //               <option value="e">E</option>
+  //             </select>
+  //           </td>
+  //         </tr>
+  // `;
+  // document.querySelector('tbody').innerHTML += html;
+
+  const template = document.querySelector('#tr-template');
+  const clone = template.content.cloneNode(true);
+
+  clone.querySelector('.course-name').innerText = courses[course].fullname;
+  clone.querySelector('.course-credit').innerText = courses[course].credit;
+  clone.querySelector('select').id = `${course}-input`;
+
+  document.querySelector('tbody').append(clone);
 });
 
 function calculate() {
