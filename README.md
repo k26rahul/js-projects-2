@@ -7,3 +7,7 @@ CGPA Calculator
 
 - https://k26rahul.github.io/js-projects-2/cgpa-calculator
 - https://k26rahul.github.io/js-projects-2/cgpa-calculator-2
+
+Random stuff
+
+- https://k26rahul.github.io/js-projects-2/flex
