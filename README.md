@@ -1,5 +1,5 @@
-[https://k26rahul.github.io/js-projects-2/Calculator](https://k26rahul.github.io/js-projects-2/Calculator)
+[Calculator](https://k26rahul.github.io/js-projects-2/calculator)
 
-[https://k26rahul.github.io/js-projects-2/CGPA-Calculator](https://k26rahul.github.io/js-projects-2/CGPA-Calculator)
+[CGPA Calculator](https://k26rahul.github.io/js-projects-2/cgpa-calculator)
 
-[https://k26rahul.github.io/js-projects-2/CGPA-Calculator](https://k26rahul.github.io/js-projects-2/CGPA-Calculator)
+[CGPA Calculator 2](https://k26rahul.github.io/js-projects-2/cgpa-calculator-2)
