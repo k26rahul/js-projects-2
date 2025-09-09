@@ -127,22 +127,22 @@ const courses = {
     credit: 2,
     fullname: 'Business Data Management - Project',
     level: 'diploma-ds',
-  }, // Option 1
+  },
   BSMS2002: {
     credit: 4,
     fullname: 'Business Analytics',
     level: 'diploma-ds',
-  }, // Option 1
+  },
   BSDA2001: {
     credit: 4,
     fullname: 'Introduction to Deep Learning and Generative AI',
     level: 'diploma-ds',
-  }, // Option 2
+  },
   BSDA2001P: {
     credit: 2,
     fullname: 'Deep Learning and Generative AI - Project',
     level: 'diploma-ds',
-  }, // Option 2
+  },
 
   // ===== Degree =====
   BSCS3001: {
@@ -168,6 +168,53 @@ const courses = {
   BSGN3001: {
     credit: 4,
     fullname: 'Strategies for Professional Growth',
+    level: 'degree',
+  },
+
+  // ===== Degree Electives (Dummy) =====
+  Elective1: {
+    credit: 4,
+    fullname: 'Elective 1',
+    level: 'degree',
+  },
+  Elective2: {
+    credit: 4,
+    fullname: 'Elective 2',
+    level: 'degree',
+  },
+  Elective3: {
+    credit: 4,
+    fullname: 'Elective 3',
+    level: 'degree',
+  },
+  Elective4: {
+    credit: 4,
+    fullname: 'Elective 4',
+    level: 'degree',
+  },
+  Elective5: {
+    credit: 4,
+    fullname: 'Elective 5',
+    level: 'degree',
+  },
+  Elective6: {
+    credit: 4,
+    fullname: 'Elective 6',
+    level: 'degree',
+  },
+  Elective7: {
+    credit: 4,
+    fullname: 'Elective 7',
+    level: 'degree',
+  },
+  Elective8: {
+    credit: 4,
+    fullname: 'Elective 8',
+    level: 'degree',
+  },
+  Elective9: {
+    credit: 4,
+    fullname: 'Elective 9',
     level: 'degree',
   },
 };
@@ -242,4 +289,25 @@ function importGradesJson() {
   } catch {
     alert('Invalid JSON');
   }
+}
+
+function loadSampleJson() {
+  const sample = {
+    BSHS1001: 'S',
+    BSMA1001: 'C',
+    BSMA1002: 'C',
+    BSCS1001: 'B',
+    BSHS1002: 'A',
+    BSMA1003: 'D',
+    BSCS1002: 'D',
+    BSMA1004: 'B',
+    BSCS2001: 'D',
+    BSCS2002: 'C',
+    BSCS2003: 'B',
+    BSCS2003P: 'S',
+    BSCS2006: 'D',
+    BSCS2006P: 'A',
+    BSSE2001: 'C',
+  };
+  document.querySelector('.json-input textarea').value = JSON.stringify(sample, null, 2);
 }

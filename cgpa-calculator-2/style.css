@@ -28,6 +28,10 @@ thead {
   background-color: lightblue;
 }
 
+th {
+  padding: 10px 0;
+}
+
 tr.foundation,
 tr.diploma-ds {
   background-color: antiquewhite;
@@ -53,7 +57,7 @@ td.course-name {
 }
 
 td.course-grade {
-  padding-right: 5px;
+  padding: 0 5px;
 }
 
 .json-input {
@@ -67,7 +71,7 @@ td.course-grade {
 .json-input div {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 5px;
 }
 
 textarea {
