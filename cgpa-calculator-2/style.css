@@ -28,10 +28,6 @@ thead {
   background-color: lightblue;
 }
 
-tr {
-  line-height: 2rem;
-}
-
 tr.foundation,
 tr.diploma-ds {
   background-color: antiquewhite;
@@ -52,6 +48,7 @@ th.course-credit {
 
 td.course-name {
   text-align: left;
+  padding: 10px 0;
   padding-left: 5px;
 }
 
@@ -64,6 +61,7 @@ td.course-grade {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+  padding: 0 5px;
 }
 
 .json-input div {
