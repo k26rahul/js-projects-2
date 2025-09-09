@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CGPA Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>CGPA Calculator</h1>
+      <h2 id="result">CGPA: _</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th class="course-credit">Credit</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="json-input">
+        <div>
+          Import your grades in JSON
+          <button onclick="importGradesJson()">Import</button>
+        </div>
+        <textarea rows="4" cols="40"></textarea>
+      </div>
+    </main>
+
+    <template id="tr-template">
+      <tr>
+        <td class="course-name">English I</td>
+        <td class="course-credit">4</td>
+        <td class="course-grade">
+          <select id="english1-input">
+            <option value="" selected>Not done</option>
+            <option value="s">S</option>
+            <option value="a">A</option>
+            <option value="b">B</option>
+            <option value="c">C</option>
+            <option value="d">D</option>
+            <option value="e">E</option>
+          </select>
+        </td>
+      </tr>
+    </template>
+  </body>
+</html>
