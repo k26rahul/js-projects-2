@@ -97,11 +97,7 @@ const courses = {
     fullname: 'Machine Learning Foundations',
     level: 'diploma-ds',
   },
-  BSMS2001: {
-    credit: 4,
-    fullname: 'Business Data Management',
-    level: 'diploma-ds',
-  },
+
   BSCS2007: {
     credit: 4,
     fullname: 'Machine Learning Techniques',
@@ -120,6 +116,11 @@ const courses = {
   BSSE2002: {
     credit: 3,
     fullname: 'Tools in Data Science',
+    level: 'diploma-ds',
+  },
+  BSMS2001: {
+    credit: 4,
+    fullname: 'Business Data Management',
     level: 'diploma-ds',
   },
   BSMS2001P: {
