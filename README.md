@@ -1,3 +1,10 @@
+#### Repositories
+
+- https://github.com/k26rahul/js-projects
+- https://github.com/k26rahul/js-projects-2
+
+#### Projects
+
 Calculator
 
 - https://k26rahul.github.io/js-projects-2/calculator

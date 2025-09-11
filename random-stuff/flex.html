@@ -5,34 +5,322 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flexbox</title>
     <style>
-      main {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
+      /* page styles */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        padding: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      h2,
+      p {
+        margin-top: 1em;
+      }
+
+      /* common to all demos */
+
+      section {
+        border: 1px solid red;
       }
 
       div {
         width: 100px;
         height: 100px;
-        background-color: darkslateblue;
         color: gold;
-        line-break: anywhere;
+        background-color: darkslateblue;
+      }
+
+      /* specific to demos */
+
+      .flex {
+        display: flex;
+      }
+
+      .gap {
+        gap: 5px;
+      }
+
+      .wrap {
+        flex-wrap: wrap;
+      }
+
+      .grow-items div {
+        flex-grow: 1;
+      }
+
+      .dont-shrink-items div {
+        flex-shrink: 0;
+      }
+
+      .overflow-hidden {
+        overflow: hidden;
+      }
+
+      .overflow-auto {
+        overflow: auto;
+      }
+
+      .taller {
+        height: 200px;
       }
     </style>
   </head>
   <body>
-    <main>
+    <h2>basics</h2>
+
+    <p>default, display: block</p>
+    <section>
       <div>A</div>
       <div>B</div>
       <div>Cat</div>
+    </section>
 
-      <div>Z</div>
-      <div>Z</div>
-      <div>Z</div>
+    <p>flex</p>
+    <section class="flex">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
 
-      <div>Hospitalization in Moscow</div>
-      <div>H</div>
-      <div>H</div>
-    </main>
+    <p>flex, gap</p>
+    <section class="flex gap">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <h2>wrap, shrink, grow</h2>
+
+    <p>no wrap, items will shrink if not enough space</p>
+    <section class="flex gap">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>no wrap, but items are flex-shrink: 0, overflows if not enough space</p>
+    <section class="flex gap dont-shrink-items">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>no wrap, all items are flex-shrink: 0, but container is overflow: hidden</p>
+    <section class="flex gap dont-shrink-items overflow-hidden">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>no wrap, all items are flex-shrink: 0, but container is overflow: auto</p>
+    <section class="flex gap dont-shrink-items overflow-auto">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>with wrap, items will move to next row if not enough space</p>
+    <section class="flex gap wrap">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>with wrap, last Cat is flex-grow: 1</p>
+    <section class="flex gap wrap">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div style="flex-grow: 1">Cat</div>
+    </section>
+
+    <p>with wrap, all items are flex-grow: 1</p>
+    <section class="flex gap wrap grow-items">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>items have flex-grow: 1, they grow to consume extra space</p>
+    <section class="flex gap wrap grow-items">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>A & B are flex-grow: 1, Cat is flex-grow: 0.5</p>
+    <section class="flex gap wrap grow-items">
+      <div>A</div>
+      <div>B</div>
+      <div style="flex-grow: 0.5">Cat</div>
+    </section>
+
+    <h2>justify-content</h2>
+
+    <p>
+      justify-content: center, works along major axis, in this case horizontal;
+      <br />
+      note: no flex-grow here
+    </p>
+    <section class="flex gap wrap" style="justify-content: center">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>justify-content: space-around</p>
+    <section class="flex gap wrap" style="justify-content: space-around">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>justify-content: space-evenly</p>
+    <section class="flex gap wrap" style="justify-content: space-evenly">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>justify-content: space-between</p>
+    <section class="flex gap wrap" style="justify-content: space-between">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>justify-content: start (default)</p>
+    <section class="flex gap wrap" style="justify-content: start">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>justify-content: end</p>
+    <section class="flex gap wrap" style="justify-content: end">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <h2>align-items</h2>
+
+    <p>
+      align-items: center, works along minor axis, in this case vertical;
+      <br />
+      note: no visible effect because container height is just enough to accommodate items
+    </p>
+    <section class="flex gap wrap" style="align-items: center">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>
+      align-items: center, container is taller
+      <br />
+    </p>
+    <section class="flex gap wrap taller" style="align-items: center">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>
+      align-items: center, Cat is flex-grow: 1
+      <br />
+    </p>
+    <section class="flex gap wrap taller" style="align-items: center">
+      <div>A</div>
+      <div>B</div>
+      <div style="flex-grow: 1">Cat</div>
+    </section>
+
+    <p>
+      align-items: center, justify-content: center
+      <br />
+    </p>
+    <section class="flex gap wrap taller" style="align-items: center; justify-content: center">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <h2>flex-direction: column</h2>
+
+    <p></p>
+    <section class="flex gap" style="flex-direction: column">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
   </body>
 </html>
