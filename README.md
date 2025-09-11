@@ -10,4 +10,4 @@ CGPA Calculator
 
 Random stuff
 
-- https://k26rahul.github.io/js-projects-2/flex
+- https://k26rahul.github.io/js-projects-2/random-stuff/flex
