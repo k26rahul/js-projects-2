@@ -1,3 +1,5 @@
+/* basic page styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -18,15 +20,105 @@ main {
   display: flex;
 }
 
+/* common ui elements */
+
+button {
+  border: none;
+  user-select: none;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: black;
+}
+
+/* toolbar styles */
+
 .toolbar {
   width: 50px;
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: antiquewhite;
 }
 
+.toolbar-top,
+.toolbar-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+/* inbox styles */
+
 .inbox {
   width: 30%;
+  display: flex;
+  flex-direction: column;
   background-color: aquamarine;
 }
+
+/* header */
+
+.inbox-header {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inbox-header-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+/* search */
+
+.inbox-search {
+  padding: 5px;
+}
+
+.inbox-search input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid seagreen;
+}
+
+.inbox-search-filters {
+  margin-top: 5px;
+}
+
+.inbox-search-filters button {
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 2px 6px;
+}
+
+/* main */
+
+.inbox-main {
+  flex-grow: 1;
+}
+
+.inbox-chat {
+  display: flex;
+}
+
+/* chatbox styles */
 
 .chatbox {
   flex-grow: 1;
