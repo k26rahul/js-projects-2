@@ -316,8 +316,38 @@
 
     <h2>flex-direction: column</h2>
 
-    <p></p>
+    <p>flex-direction: column, container height is not specified</p>
     <section class="flex gap" style="flex-direction: column">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>flex-direction: column, container height 200px, items shrink</p>
+    <section class="flex gap taller" style="flex-direction: column">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>
+      flex-direction: column, container height 200px, items have flex-shrink: 0, Cat is pink and
+      hidden underneath next content
+    </p>
+    <section class="flex gap taller dont-shrink-items" style="flex-direction: column">
+      <div>A</div>
+      <div>B</div>
+      <div style="background-color: deeppink">Cat</div>
+    </section>
+
+    <p>
+      flex-direction: column, container height 200px, items have flex-shrink: 0, but container is
+      overflow: auto
+    </p>
+    <section class="flex gap taller dont-shrink-items overflow-auto" style="flex-direction: column">
       <div>A</div>
       <div>B</div>
       <div>Cat</div>
