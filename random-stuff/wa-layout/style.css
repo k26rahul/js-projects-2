@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body,
+main {
+  height: 100%;
+}
+
+main {
+  display: flex;
+}
+
+.toolbar {
+  width: 50px;
+  background-color: antiquewhite;
+}
+
+.inbox {
+  width: 30%;
+  background-color: aquamarine;
+}
+
+.chatbox {
+  flex-grow: 1;
+  background-color: lightblue;
+}
