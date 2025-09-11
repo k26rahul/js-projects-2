@@ -23,6 +23,12 @@
         margin-top: 1em;
       }
 
+      img {
+        width: 200px;
+        height: 200px;
+        margin-top: 1.5rem;
+      }
+
       /* common to all demos */
 
       section {
@@ -316,14 +322,14 @@
 
     <h2>flex-direction: column</h2>
 
-    <p>flex-direction: column, container height is not specified</p>
+    <p>container height is not specified</p>
     <section class="flex gap" style="flex-direction: column">
       <div>A</div>
       <div>B</div>
       <div>Cat</div>
     </section>
 
-    <p>flex-direction: column, container height 200px, items shrink</p>
+    <p>container height 200px, items shrink</p>
     <section class="flex gap taller" style="flex-direction: column">
       <div>A</div>
       <div>B</div>
@@ -334,23 +340,54 @@
     </section>
 
     <p>
-      flex-direction: column, container height 200px, items have flex-shrink: 0, Cat is pink and
-      hidden underneath next content
+      container height 200px, items have flex-shrink: 0, Cat is deeppink and hidden underneath next
+      content
     </p>
     <section class="flex gap taller dont-shrink-items" style="flex-direction: column">
       <div>A</div>
       <div>B</div>
       <div style="background-color: deeppink">Cat</div>
     </section>
+    <img src="https://picsum.photos/200" alt="200x200 image here" />
 
     <p>
-      flex-direction: column, container height 200px, items have flex-shrink: 0, but container is
-      overflow: auto
+      container height 200px, items have flex-shrink: 0, Cat is deeppink and z-index: 1 to bring it
+      on top layer
     </p>
+    <section class="flex gap taller dont-shrink-items" style="flex-direction: column">
+      <div>A</div>
+      <div>B</div>
+      <div style="background-color: deeppink; z-index: 1">Cat</div>
+    </section>
+    <img src="https://picsum.photos/200" alt="200x200 image here" />
+
+    <p>container height 200px with flex wrap, items have flex-shrink: 0</p>
+    <section class="flex gap taller dont-shrink-items wrap" style="flex-direction: column">
+      <div>A</div>
+      <div>B</div>
+      <div>Cat</div>
+    </section>
+
+    <p>container height 200px without flex-wrap but overflow: auto, items have flex-shrink: 0,</p>
     <section class="flex gap taller dont-shrink-items overflow-auto" style="flex-direction: column">
       <div>A</div>
       <div>B</div>
       <div>Cat</div>
+    </section>
+
+    <h2>justify-content (vertical), align-items (horizontal)</h2>
+
+    <p>justify-content: center</p>
+    <section class="flex gap taller" style="flex-direction: column; justify-content: center">
+      <div>A</div>
+    </section>
+
+    <p>justify-content: center, align-items: center</p>
+    <section
+      class="flex gap taller"
+      style="flex-direction: column; justify-content: center; align-items: center"
+    >
+      <div>A</div>
     </section>
   </body>
 </html>
