@@ -1,12 +1,7 @@
-#### Repositories
+#### GitHub repo/site
 
-- <https://github.com/k26rahul/js-projects>
 - <https://github.com/k26rahul/js-projects-2>
-
----
-
-- <https://github.com/vidhatrihr/js-projects>
-- <https://github.com/vidhatrihr/js-projects-2>
+- <https://k26rahul.github.io/js-projects/>
 
 #### Projects
 
