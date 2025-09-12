@@ -7,7 +7,8 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 html,
@@ -26,7 +27,7 @@ button {
   border: none;
   user-select: none;
   cursor: pointer;
-  transition: 0.1s;
+  transition: 0.15s ease;
 }
 
 button:active {
@@ -34,8 +35,8 @@ button:active {
 }
 
 .icon {
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,11 +44,14 @@ button:active {
   background-color: black;
 }
 
+.icon:hover {
+  background-color: midnightblue;
+}
+
 /* toolbar styles */
 
 .toolbar {
-  width: 50px;
-  padding: 5px 0;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,6 +70,7 @@ button:active {
 
 .inbox {
   width: 30%;
+  min-width: 20rem;
   display: flex;
   flex-direction: column;
   background-color: aquamarine;
@@ -94,17 +99,21 @@ button:active {
 .inbox-search input {
   width: 100%;
   padding: 5px;
+  font-size: 1.2rem;
   border-radius: 5px;
   border: 2px solid seagreen;
 }
 
 .inbox-search-filters {
-  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px 0;
 }
 
 .inbox-search-filters button {
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 0.8rem;
   padding: 2px 6px;
 }
 
@@ -112,10 +121,26 @@ button:active {
 
 .inbox-main {
   flex-grow: 1;
+  padding: 5px;
 }
 
 .inbox-chat {
   display: flex;
+  gap: 5px;
+  font-size: 1rem;
+}
+
+.inbox-chat-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.inbox-chat-content,
+.inbox-chat-meta {
+  font-size: 0.8rem;
 }
 
 /* chatbox styles */
