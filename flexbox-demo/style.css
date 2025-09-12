@@ -1,0 +1,70 @@
+/* page styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2,
+p {
+  margin-top: 1em;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  margin-top: 1.5rem;
+}
+
+/* common to all demos */
+
+section {
+  border: 1px solid red;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  color: gold;
+  background-color: darkslateblue;
+}
+
+/* specific to demos */
+
+.flex {
+  display: flex;
+}
+
+.gap {
+  gap: 5px;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.grow-items div {
+  flex-grow: 1;
+}
+
+.dont-shrink-items div {
+  flex-shrink: 0;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.taller {
+  height: 200px;
+}

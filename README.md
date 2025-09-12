@@ -5,16 +5,18 @@
 
 #### Projects
 
-Calculator
+---
 
 - https://k26rahul.github.io/js-projects-2/calculator
 - https://k26rahul.github.io/js-projects-2/calculator/skeleton
 
-CGPA Calculator
+---
 
 - https://k26rahul.github.io/js-projects-2/cgpa-calculator
 - https://k26rahul.github.io/js-projects-2/cgpa-calculator-2
 
-Random stuff
+---
 
-- https://k26rahul.github.io/js-projects-2/random-stuff/flex
+- https://k26rahul.github.io/js-projects-2/flexbox-demo
+- https://k26rahul.github.io/js-projects-2/array-methods
+- https://k26rahul.github.io/js-projects-2/wa-layout
