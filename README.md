@@ -1,7 +1,7 @@
 #### GitHub repo/site
 
 - <https://github.com/k26rahul/js-projects-2>
-- <https://k26rahul.github.io/js-projects/>
+- <https://k26rahul.github.io/js-projects-2/>
 
 #### Projects
 
