@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Search App</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js" defer></script>
+    <script type="module" src="main.js" defer></script>
   </head>
   <body>
     <main>
+      <div id="rate-limit-info">Requests left: NA</div>
       <h1>Image Search App</h1>
+
       <form class="search-container">
-        <input type="text" class="search" />
+        <input type="text" class="search" value="parrot" />
         <button>Search</button>
       </form>
 
