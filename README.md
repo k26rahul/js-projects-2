@@ -13,3 +13,4 @@
 - <https://k26rahul.github.io/js-projects-2/array-methods>
 - <https://k26rahul.github.io/js-projects-2/wa-layout>
 - <https://k26rahul.github.io/js-projects-2/image-search-app>
+- <https://k26rahul.github.io/js-projects-2/image-search-app-2>
