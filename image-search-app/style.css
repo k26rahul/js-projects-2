@@ -51,19 +51,19 @@ button:active {
   column-gap: 20px;
 }
 
-@media (max-width: 600px) {
-  .image-container {
-    column-count: 1;
-    column-gap: 0;
-    padding: 10px;
-  }
-}
-
 @media (max-width: 1000px) {
   .image-container {
     column-count: 2;
     column-gap: 15px;
     padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .image-container {
+    column-count: 1;
+    column-gap: 0;
+    padding: 10px;
   }
 }
 
