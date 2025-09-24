@@ -5,69 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WhatsApp layout</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"></script>
   </head>
   <body>
     <main>
       <section class="toolbar">
-        <section class="toolbar-top">
-          <button class="icon">💫</button>
-          <button class="icon">💫</button>
-          <button class="icon">💫</button>
-          <button class="icon">💫</button>
-          <button class="icon">💫</button>
-        </section>
+        <div class="toolbar-top">
+          <button><iconify-icon icon="tabler:message-2"></iconify-icon></button>
+          <button><iconify-icon icon="f7:status"></iconify-icon></button>
+          <button><iconify-icon icon="fluent:channel-alert-24-regular"></iconify-icon></button>
+          <button><iconify-icon icon="fluent:people-community-24-regular"></iconify-icon></button>
+          <button><iconify-icon icon="mingcute:meta-fill"></iconify-icon></button>
+        </div>
 
-        <section class="toolbar-bottom">
-          <button class="icon">💫</button>
-          <button class="icon">💫</button>
-        </section>
+        <div class="toolbar-bottom">
+          <button><iconify-icon icon="uil:setting"></iconify-icon></button>
+          <button><iconify-icon icon="ooui:user-avatar"></iconify-icon></button>
+        </div>
       </section>
 
       <section class="inbox">
-        <section class="inbox-header">
-          <h1>WhatsApp</h1>
-          <div class="inbox-header-buttons">
-            <button class="icon">💫</button>
-            <button class="icon">💫</button>
+        <div class="inbox-header">
+          <h2>WhatsApp</h2>
+          <div>
+            <button><iconify-icon icon="pajamas:duo-chat-new"></iconify-icon></button>
+            <button><iconify-icon icon="charm:menu-kebab"></iconify-icon></button>
           </div>
-        </section>
+        </div>
 
-        <section class="inbox-search">
-          <input type="text" placeholder="Search or start a new chat" />
+        <div class="inbox-search">
+          <input type="text" placeholder="Search or start new chat" />
           <div class="inbox-search-filters">
             <button>All</button>
             <button>Unread</button>
             <button>Favorites</button>
             <button>Groups</button>
           </div>
-        </section>
+        </div>
 
-        <section class="inbox-main">
+        <div class="inbox-main">
           <div class="inbox-chat">
-            <div class="inbox-chat-avatar">
-              <img src="https://picsum.photos/50" alt="User avatar of Rahul Maurya" />
+            <div class="avatar">
+              <img src="https://picsum.photos/40?t=1" alt="40 x 40 image here" />
             </div>
-
-            <div class="inbox-chat-body">
-              <div class="inbox-chat-sender">Rahul Maurya</div>
-              <div class="inbox-chat-content">
-                Vidu, you are the sun, the moon, and all the stars
+            <div class="details">
+              <div class="row1">
+                <div class="username">Rahul</div>
+                <div class="time">9:20 pm</div>
+              </div>
+              <div class="row2">
+                <div class="tick">
+                  <iconify-icon icon="mdi:tick-all"></iconify-icon>
+                </div>
+                <div class="content">Hello vidu, u are the awesomest, magical!</div>
+                <div class="count">5</div>
               </div>
             </div>
+          </div>
 
-            <div class="inbox-chat-meta">
-              <div class="inbox-chat-time">5:30 pm</div>
-              <div class="inbox-chat-count">3</div>
+          <div class="inbox-chat">
+            <div class="avatar">
+              <img src="https://picsum.photos/40?t=2" alt="40 x 40 image here" />
+            </div>
+            <div class="details">
+              <div class="row1">
+                <div class="username">Rahul</div>
+                <div class="time">9:20 pm</div>
+              </div>
+              <div class="row2">
+                <div class="tick">
+                  <iconify-icon icon="mdi:tick-all"></iconify-icon>
+                </div>
+                <div class="content">Hello vishnu, we love transformers!</div>
+                <div class="count">2</div>
+              </div>
             </div>
           </div>
-        </section>
+
+          <div class="inbox-chat">
+            <div class="avatar">
+              <img src="https://picsum.photos/40?t=3" alt="40 x 40 image here" />
+            </div>
+            <div class="details">
+              <div class="row1">
+                <div class="username">Rahul</div>
+                <div class="time">9:20 pm</div>
+              </div>
+              <div class="row2">
+                <div class="tick">
+                  <iconify-icon icon="mdi:tick-all"></iconify-icon>
+                </div>
+                <div class="content">Hello paru, u my fav boy!</div>
+                <div class="count">2</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="inbox-chat">
+            <div class="avatar">
+              <img src="https://picsum.photos/40?t=4" alt="40 x 40 image here" />
+            </div>
+            <div class="details">
+              <div class="row1">
+                <div class="username">Rahul</div>
+                <div class="time">9:20 pm</div>
+              </div>
+              <div class="row2">
+                <div class="tick">
+                  <iconify-icon icon="mdi:tick-all"></iconify-icon>
+                </div>
+                <div class="content">My vidu is Shakti, Vidhatri!</div>
+                <div class="count">2</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="inbox-chat">
+            <div class="avatar">
+              <img src="https://picsum.photos/40?t=5" alt="40 x 40 image here" />
+            </div>
+            <div class="details">
+              <div class="row1">
+                <div class="username">Rahul</div>
+                <div class="time">9:20 pm</div>
+              </div>
+              <div class="row2">
+                <div class="tick">
+                  <iconify-icon icon="mdi:tick-all"></iconify-icon>
+                </div>
+                <div class="content">Yo boy! Shine so bright!</div>
+                <div class="count">2</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="inbox-chat">
+            <div class="avatar">
+              <img src="https://picsum.photos/40?t=6" alt="40 x 40 image here" />
+            </div>
+            <div class="details">
+              <div class="row1">
+                <div class="username">Rahul</div>
+                <div class="time">9:20 pm</div>
+              </div>
+              <div class="row2">
+                <div class="tick">
+                  <iconify-icon icon="mdi:tick-all"></iconify-icon>
+                </div>
+                <div class="content">I am unstoppable!</div>
+                <div class="count">2</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="inbox-chat">
+            <div class="avatar">
+              <img src="https://picsum.photos/40?t=7" alt="40 x 40 image here" />
+            </div>
+            <div class="details">
+              <div class="row1">
+                <div class="username">Rahul</div>
+                <div class="time">9:20 pm</div>
+              </div>
+              <div class="row2">
+                <div class="tick">
+                  <iconify-icon icon="mdi:tick-all"></iconify-icon>
+                </div>
+                <div class="content">I am strong, all will be good!</div>
+                <div class="count">2</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="chatbox">
-        <section class="chatbox-header"></section>
-        <section class="chatbox-main"></section>
-        <section class="chatbox-input"></section>
-      </section>
+      <section class="chatbox"></section>
     </main>
   </body>
 </html>

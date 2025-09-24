@@ -1,14 +1,33 @@
-/* basic page styles */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
+iconify-icon {
   font-size: 1.5rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:has(iconify-icon) {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: white;
+  transition: 0.15s ease;
+}
+
+button:has(iconify-icon):hover {
+  background-color: #ffb0cb;
 }
 
 html,
@@ -17,35 +36,12 @@ main {
   height: 100%;
 }
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 main {
   display: flex;
-}
-
-/* common ui elements */
-
-button {
-  border: none;
-  user-select: none;
-  cursor: pointer;
-  transition: 0.15s ease;
-}
-
-button:active {
-  transform: translateY(1px);
-}
-
-.icon {
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background-color: black;
-}
-
-.icon:hover {
-  background-color: midnightblue;
 }
 
 /* toolbar styles */
@@ -56,38 +52,30 @@ button:active {
   flex-direction: column;
   justify-content: space-between;
   background-color: antiquewhite;
+  overflow: auto;
 }
 
 .toolbar-top,
 .toolbar-bottom {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 5px;
 }
 
 /* inbox styles */
 
 .inbox {
-  width: 30%;
-  min-width: 20rem;
-  display: flex;
-  flex-direction: column;
+  min-width: 300px;
   background-color: aquamarine;
 }
 
 /* header */
 
 .inbox-header {
-  padding: 5px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-}
-
-.inbox-header-buttons {
-  display: flex;
-  gap: 5px;
+  align-items: center;
+  padding: 5px;
 }
 
 /* search */
@@ -98,49 +86,92 @@ button:active {
 
 .inbox-search input {
   width: 100%;
-  padding: 5px;
   font-size: 1.2rem;
-  border-radius: 5px;
+  padding: 10px;
   border: 2px solid seagreen;
+  border-radius: 20px;
 }
 
 .inbox-search-filters {
+  margin-top: 10px;
   display: flex;
-  flex-wrap: wrap;
   gap: 5px;
-  padding: 5px 0;
 }
 
 .inbox-search-filters button {
-  border-radius: 5px;
-  font-size: 0.8rem;
-  padding: 2px 6px;
+  padding: 5px 10px;
+  border-radius: 20px;
 }
 
 /* main */
 
 .inbox-main {
-  flex-grow: 1;
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .inbox-chat {
   display: flex;
+  align-items: center;
   gap: 5px;
-  font-size: 1rem;
+  padding-bottom: 5px;
+  border-bottom: 2px solid;
 }
 
-.inbox-chat-avatar {
-  width: 50px;
-  height: 50px;
+.inbox-chat img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
+  border: 2px solid white;
 }
 
-.inbox-chat-content,
-.inbox-chat-meta {
+.inbox-chat .details {
+  flex-grow: 1;
+}
+
+.inbox-chat .row1,
+.inbox-chat .row2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.inbox-chat .content {
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inbox-chat .username {
+  font-weight: bold;
+}
+
+.inbox-chat .count,
+.inbox-chat .time {
   font-size: 0.8rem;
+}
+
+.inbox-chat .count {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  color: white;
+  background-color: seagreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inbox-chat .tick {
+  padding-top: 5px;
+}
+
+.inbox-chat .tick iconify-icon {
+  font-size: 1.2rem;
 }
 
 /* chatbox styles */
