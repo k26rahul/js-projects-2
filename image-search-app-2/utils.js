@@ -1,22 +1,34 @@
-export function getContrastYIQ(hexcolor) {
-  hexcolor = hexcolor.slice(1);
-  const r = hexcolor.slice(0, 2);
-  const g = hexcolor.slice(2, 4);
-  const b = hexcolor.slice(4, 6);
-  console.log(r, g, b);
+import { decodeBlurHash } from 'https://unpkg.com/fast-blurhash@1.1.4/index.js';
+
+export function setBlurhashBg(blurhash, wrapper, width = 64, height = 64) {
+  // decode blurHash image
+  const pixels = decodeBlurHash(blurhash, width, height);
+
+  // draw it on canvas
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.createImageData(width, height);
+  imageData.data.set(pixels);
+  ctx.putImageData(imageData, 0, 0);
+
+  canvas.toBlob(blob => {
+    wrapper.style.backgroundImage = `url('${URL.createObjectURL(blob)}')`;
+  });
 }
 
-// export function getContrastYIQ(hexcolor) {
-//   hexcolor = hexcolor.replace('#', '');
-//   const r = parseInt(hexcolor.substr(0, 2), 16);
-//   const g = parseInt(hexcolor.substr(2, 2), 16);
-//   const b = parseInt(hexcolor.substr(4, 2), 16);
+export function getContrastYIQ(hexcolor) {
+  hexcolor = hexcolor.slice(1);
+  const r = parseInt(hexcolor.slice(0, 2), 16);
+  const g = parseInt(hexcolor.slice(2, 4), 16);
+  const b = parseInt(hexcolor.slice(4, 6), 16);
 
-//   console.log(r, g, b);
-
-//   const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-//   return yiq >= 128 ? '#222' : '#fff';
-// }
+  // YIQ luma (brightness) formula
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return yiq; // brightness score between 0 (dark) and 255 (bright)
+}
 
 export class Cache {
   constructor(storageId) {

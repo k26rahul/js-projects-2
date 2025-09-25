@@ -40,6 +40,9 @@ body {
 .image-result {
   margin-bottom: 20px;
   break-inside: avoid;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .image-result img {
@@ -52,7 +55,7 @@ body {
   padding: 10px;
 }
 
-.image-result p.white-text {
+.image-result p.light-text {
   color: #fff;
   text-shadow: 0 0 2px #222;
 }

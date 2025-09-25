@@ -1,4 +1,4 @@
-import { Cache, getContrastYIQ } from './utils.js';
+import { Cache, getContrastYIQ, setBlurhashBg } from './utils.js';
 
 const ACCESS_KEY = 'EJkN_ZCtAARx7ENuEbRJ1TaGUED_YcsMCStbCStMTX0';
 const cache = new Cache('image-search-app-2-cache');
@@ -30,15 +30,18 @@ async function getPhotos() {
   container.innerHTML = '';
 
   data.results.forEach(img => {
-    getContrastYIQ(img.color);
+    let textClass = getContrastYIQ(img.color) >= 128 ? 'dark-text' : 'light-text';
 
-    const html = `
+    const dummy = document.createElement('div');
+    dummy.innerHTML = `
         <div class="image-result">
           <img src="${img.urls.regular}" alt="this is placeholder image" />
-          <p class="dark-text" style="background-color: ${img.color};">${img.alt_description}</p>
+          <p class="${textClass}" style="background-color: ${img.color};">${img.alt_description}</p>
         </div>
     `;
-    document.querySelector('.image-container').innerHTML += html;
+
+    setBlurhashBg(img.blur_hash, dummy.querySelector('.image-result'));
+    document.querySelector('.image-container').append(dummy.firstElementChild);
   });
 }
 
