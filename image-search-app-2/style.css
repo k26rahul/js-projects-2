@@ -38,10 +38,26 @@ body {
 }
 
 .image-result {
+  margin-bottom: 20px;
   break-inside: avoid;
 }
 
 .image-result img {
+  display: block;
   width: 100%;
   object-fit: cover;
+}
+
+.image-result p {
+  padding: 10px;
+}
+
+.image-result p.white-text {
+  color: #fff;
+  text-shadow: 0 0 2px #222;
+}
+
+.image-result p.dark-text {
+  color: #222;
+  text-shadow: 0 0 2px #fff;
 }

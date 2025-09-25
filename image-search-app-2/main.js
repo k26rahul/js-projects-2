@@ -1,4 +1,4 @@
-import { Cache } from './utils.js';
+import { Cache, getContrastYIQ } from './utils.js';
 
 const ACCESS_KEY = 'EJkN_ZCtAARx7ENuEbRJ1TaGUED_YcsMCStbCStMTX0';
 const cache = new Cache('image-search-app-2-cache');
@@ -30,10 +30,12 @@ async function getPhotos() {
   container.innerHTML = '';
 
   data.results.forEach(img => {
+    getContrastYIQ(img.color);
+
     const html = `
         <div class="image-result">
           <img src="${img.urls.regular}" alt="this is placeholder image" />
-          <p>${img.alt_description}</p>
+          <p class="dark-text" style="background-color: ${img.color};">${img.alt_description}</p>
         </div>
     `;
     document.querySelector('.image-container').innerHTML += html;
