@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let myPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('after 5 sec');
+
+          resolve('banana milk shake made by paru');
+          // reject('database not found');
+        }, 5000);
+      });
+
+      // myPromise
+      //   .then(result => {
+      //     console.log(`first .then's result: ${result}`);
+      //     return 'gift by first';
+      //   })
+      //   .catch(error => {
+      //     console.log(`myPromise failed: ${error}`);
+      //     return 'gift by .catch';
+      //   })
+      //   .then(result => {
+      //     console.log(`last .then's result: ${result}`);
+      //   });
+
+      async function test() {
+        let fruit = await myPromise;
+
+        let response = await fetch('./data.json');
+        let data = await response.json();
+
+        return `vidu is a beautiful star, who eats ${fruit}, who lives in ${data.city}`;
+      }
+
+      let promiseOfTest = test();
+
+      promiseOfTest.then(message => {
+        console.log(message);
+      });
+    </script>
+  </body>
+</html>

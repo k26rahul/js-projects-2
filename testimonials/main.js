@@ -1,27 +1,43 @@
+const html = String.raw;
+
 let imgEl = document.querySelector('img');
 let paraEl = document.querySelector('p');
 let headingEl = document.querySelector('h2');
 
+let activeIdx = parseInt(new URLSearchParams(location.search).get('idx') ?? 0);
+let timeoutDuration = parseFloat(new URLSearchParams(location.search).get('timeout') ?? 5) * 1000;
+
 let data = [];
-let prevIdx = 0;
+let timeoutRef = null;
 
 function updateDetails(idx) {
+  console.log(`updateDetails(${idx}) at ${new Date().getSeconds()}`);
+
   imgEl.src = data[idx].url;
   paraEl.innerText = data[idx].testimonial;
   headingEl.innerText = data[idx].name;
-  document.querySelector(`.btn-${prevIdx}`).classList.remove('active');
+
+  document.querySelector(`.btn-${activeIdx}`).classList.remove('active');
   document.querySelector(`.btn-${idx}`).classList.add('active');
-  prevIdx = idx;
+
+  activeIdx = idx;
+
+  // trigger a timeout that does updateDetails(idx + 1), after 5 sec
+  clearTimeout(timeoutRef);
+
+  timeoutRef = setTimeout(() => {
+    updateDetails((idx + 1) % data.length);
+  }, timeoutDuration);
 }
 
 function generateButtons() {
   data.forEach((elem, idx) => {
-    let activeClass = idx == prevIdx ? 'active' : '';
-    let html = `
-        <button onclick="updateDetails(${idx})" class="btn-${idx} ${activeClass}"></button>
+    let activeClass = idx == activeIdx ? 'active' : '';
+    let buttonHtml = html`
+      <button onclick="updateDetails(${idx})" class="btn-${idx} ${activeClass}"></button>
     `;
 
-    document.querySelector('.controls').innerHTML += html;
+    document.querySelector('.controls').innerHTML += buttonHtml;
   });
 }
 
@@ -32,7 +48,7 @@ async function getData() {
   data = await response.json();
 
   generateButtons();
-  updateDetails(0);
+  updateDetails(activeIdx);
   document.querySelector('.testimonial').style.visibility = 'visible';
 }
 
