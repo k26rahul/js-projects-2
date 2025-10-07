@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Array Methods",
+    "description": "Demo of array methods",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/array-methods"
+  },
+  {
+    "title": "Calculator",
+    "description": "Basic calculator implementation",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/calculator"
+  },
+  {
+    "title": "CGPA Calculator",
+    "description": "Calculate your CGPA easily",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/cgpa-calculator"
+  },
+  {
+    "title": "CGPA Calculator 2",
+    "description": "Enhanced CGPA calculator with more features",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/cgpa-calculator-2"
+  },
+  {
+    "title": "Flexbox Demo",
+    "description": "Interactive flexbox layout examples",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/flexbox-demo"
+  },
+  {
+    "title": "Image Search App",
+    "description": "Search and browse images",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/image-search-app"
+  },
+  {
+    "title": "Image Search App 2",
+    "description": "Enhanced image search application",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/image-search-app-2"
+  },
+  {
+    "title": "Rem vs Px",
+    "description": "Compare rem and px units",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/rem-vs-px"
+  },
+  {
+    "title": "Testimonials",
+    "description": "Customer testimonials showcase",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/testimonials"
+  },
+  {
+    "title": "WhatsApp Layout",
+    "description": "WhatsApp-inspired chat interface",
+    "screenshot": "https://placehold.co/400x300",
+    "link": "https://k26rahul.github.io/js-projects-2/wa-layout"
+  }
+]
