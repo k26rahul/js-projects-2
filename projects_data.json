@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Array Methods",
+    "description": "Demo of array methods",
+    "slug": "array-methods"
+  },
+  {
+    "title": "Calculator",
+    "description": "Basic calculator implementation",
+    "slug": "calculator"
+  },
+  {
+    "title": "CGPA Calculator",
+    "description": "Calculate your CGPA easily",
+    "slug": "cgpa-calculator"
+  },
+  {
+    "title": "CGPA Calculator 2",
+    "description": "Enhanced CGPA calculator with more features",
+    "slug": "cgpa-calculator-2"
+  },
+  {
+    "title": "Flexbox Demo",
+    "description": "Interactive flexbox layout examples",
+    "slug": "flexbox-demo"
+  },
+  {
+    "title": "Image Search App",
+    "description": "Search and browse images",
+    "slug": "image-search-app"
+  },
+  {
+    "title": "Image Search App 2",
+    "description": "Enhanced image search application",
+    "slug": "image-search-app-2"
+  },
+  {
+    "title": "Rem vs Px",
+    "description": "Compare rem and px units",
+    "slug": "rem-vs-px"
+  },
+  {
+    "title": "Testimonials",
+    "description": "Customer testimonials showcase",
+    "slug": "testimonials"
+  },
+  {
+    "title": "WhatsApp Layout",
+    "description": "WhatsApp-inspired chat interface",
+    "slug": "wa-layout"
+  }
+]
