@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-theme">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,28 +17,56 @@
       defer
     ></script>
 
-    <script
-      src="https://unpkg.com/micromustache@8.0.3/dist/micromustache.umd.min.js"
-      defer
-    ></script>
+    <script src="https://unpkg.com/mustache@4.2.0/mustache.min.js" defer></script>
+
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark-theme');
+        } else {
+          document.documentElement.classList.remove('dark-theme');
+        }
+      })();
+    </script>
 
     <link rel="shortcut icon" href="assets/favicon.svg" />
     <link rel="stylesheet" href="assets/style.css" />
     <script src="assets/main.js" defer></script>
   </head>
   <body>
+    <button id="theme-toggle" aria-label="Toggle dark theme">
+      <iconify-icon icon="mdi:theme-light-dark"></iconify-icon>
+    </button>
     <main>
       <h1>JS Projects 2: A collection of JavaScript projects.</h1>
 
       <section class="projects-container">
         <template id="project-template">
           <div class="project">
+            {{#isNew}}
+            <div class="new-badge">New</div>
+            {{/isNew}}
+
             <div class="screenshot-wrapper">
               <img src="{{ slug }}/screenshot.jpg" alt="{{ title }} Screenshot" />
             </div>
 
             <strong class="title">{{ title }}</strong>
             <div class="description">{{ description }}</div>
+
+            <div class="creation-date">
+              <iconify-icon icon="mdi:calendar"></iconify-icon>
+              {{ created }}
+            </div>
+
+            <div class="tags">
+              {{#tags}}
+              <span class="tag">{{.}}</span>
+              {{/tags}}
+            </div>
 
             <a
               href="https://k26rahul.github.io/js-projects-2/{{ slug }}"

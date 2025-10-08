@@ -3,70 +3,90 @@
     "title": "Testimonials",
     "description": "Customer testimonials showcase",
     "slug": "testimonials",
-    "meta": {},
+    "meta": {
+      "tags": "Logic, Demo"
+    },
     "created": "2025-10-06T16:00:35.227457"
   },
   {
     "title": "Image Search App 2",
     "description": "Enhanced image search application",
     "slug": "image-search-app-2",
-    "meta": {},
+    "meta": {
+      "tags": "API, Logic, Blurhash, Infinite scroll, Local storage"
+    },
     "created": "2025-09-24T20:34:45.219129"
   },
   {
     "title": "Image Search App",
     "description": "Search and browse images",
     "slug": "image-search-app",
-    "meta": {},
+    "meta": {
+      "tags": "API, Logic, Blurhash, Infinite scroll, Local storage"
+    },
     "created": "2025-09-24T07:58:35.181035"
   },
   {
     "title": "Rem vs Px",
     "description": "Compare rem and px units",
     "slug": "rem-vs-px",
-    "meta": {},
+    "meta": {
+      "tags": "Demo"
+    },
     "created": "2025-09-12T13:42:18.432702"
   },
   {
     "title": "Array Methods",
     "description": "Demo of array methods",
     "slug": "array-methods",
-    "meta": {},
+    "meta": {
+      "tags": "Demo, Logic"
+    },
     "created": "2025-09-12T11:44:24.258162"
   },
   {
     "title": "WhatsApp Layout",
     "description": "WhatsApp-inspired chat interface",
     "slug": "wa-layout",
-    "meta": {},
+    "meta": {
+      "tags": "UI Layout"
+    },
     "created": "2025-09-11T17:57:14.354947"
   },
   {
     "title": "Flexbox Demo",
     "description": "Interactive flexbox layout examples",
     "slug": "flexbox-demo",
-    "meta": {},
+    "meta": {
+      "tags": "Demo, UI Layout"
+    },
     "created": "2025-09-07T12:48:04.613064"
   },
   {
     "title": "CGPA Calculator 2",
     "description": "Enhanced CGPA calculator with more features",
     "slug": "cgpa-calculator-2",
-    "meta": {},
+    "meta": {
+      "tags": "Logic, JSON, Local storage"
+    },
     "created": "2025-09-06T22:34:48.390046"
   },
   {
     "title": "CGPA Calculator",
     "description": "Calculate your CGPA easily",
     "slug": "cgpa-calculator",
-    "meta": {},
+    "meta": {
+      "tags": "Logic"
+    },
     "created": "2025-09-05T19:02:51.643420"
   },
   {
     "title": "Calculator",
     "description": "Basic calculator implementation",
     "slug": "calculator",
-    "meta": {},
+    "meta": {
+      "tags": "Logic"
+    },
     "created": "2025-08-08T14:01:46.754267"
   }
 ]
