@@ -1,5 +1,14 @@
 [
   {
+    "title": "Loan Calculator",
+    "description": "Easily calculate EMI",
+    "slug": "loan-calculator",
+    "meta": {
+      "tags": "Logic, Vidu"
+    },
+    "created": "2025-10-08T15:19:40.056069"
+  },
+  {
     "title": "Testimonials",
     "description": "Customer testimonials showcase",
     "slug": "testimonials",
