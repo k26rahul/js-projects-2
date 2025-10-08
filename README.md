@@ -20,3 +20,4 @@ Live site: [https://k26rahul.github.io/js-projects-2/](https://k26rahul.github.i
 - [WhatsApp Layout](https://k26rahul.github.io/js-projects-2/wa-layout)
 - [Image Search App](https://k26rahul.github.io/js-projects-2/image-search-app)
 - [Image Search App 2](https://k26rahul.github.io/js-projects-2/image-search-app-2)
+- [Testimonials](https://k26rahul.github.io/js-projects-2/testimonials)
