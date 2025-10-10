@@ -150,10 +150,11 @@ function calculate() {
   const grades = {};
   let numerator = 0;
   let denominator = 0;
+
   coursesArr.forEach(course => {
     const grade = document.querySelector(`#${course}-input`).value;
-    grades[course] = grade;
     if (grade != '') {
+      grades[course] = grade;
       numerator += points[grade] * courses[course].credit;
       denominator += courses[course].credit;
     }
@@ -169,8 +170,9 @@ function saveToLocalStorage(grades) {
 }
 
 function restoreFromLocalStorage() {
-  coursesArr.forEach(course => {
-    // document.querySelector(`#${course}-input`).value = grades[course];
+  let grades = JSON.parse(localStorage.getItem('grades')) ?? {};
+  Object.keys(grades).forEach(course => {
+    document.querySelector(`#${course}-input`).value = grades[course];
   });
 }
 
