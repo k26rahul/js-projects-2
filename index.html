@@ -40,6 +40,7 @@
     <button id="theme-toggle" aria-label="Toggle dark theme">
       <iconify-icon icon="mdi:theme-light-dark"></iconify-icon>
     </button>
+
     <main>
       <h1>JS Projects 2: A collection of JavaScript projects.</h1>
 
@@ -51,7 +52,7 @@
             {{/isNew}}
 
             <div class="screenshot-wrapper">
-              <img src="{{ slug }}/screenshot.jpg" alt="{{ title }} Screenshot" />
+              <img src="{{ screenshotUrl }}" alt="{{ title }} Screenshot" />
             </div>
 
             <strong class="title">{{ title }}</strong>
@@ -68,11 +69,7 @@
               {{/tags}}
             </div>
 
-            <a
-              href="https://k26rahul.github.io/js-projects-2/{{ slug }}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="{{ previewUrl }}" target="_blank" rel="noopener noreferrer">
               Open Live preview
               <iconify-icon icon="mdi:open-in-new" inline></iconify-icon>
             </a>

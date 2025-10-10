@@ -19,6 +19,10 @@ function prepareProject(project) {
 
     // Add isNew flag for projects created in last 10 days
     isNew: daysSinceCreation <= 10,
+
+    // Add screenshot and preview URLs
+    screenshotUrl: `${project.slug}/screenshot.jpg`,
+    previewUrl: project.slug,
   };
 }
 

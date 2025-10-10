@@ -21,6 +21,15 @@ main {
   background-color: #eee;
 }
 
+#result {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 6px 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
 #number-pad {
   display: flex;
   flex-wrap: wrap;
@@ -66,13 +75,4 @@ button.action {
 
 button.action:hover {
   background-color: rgb(206, 19, 56);
-}
-
-#result {
-  width: 100%;
-  font-size: 1.5rem;
-  padding: 6px 10px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
 }

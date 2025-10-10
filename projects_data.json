@@ -94,7 +94,7 @@
     "description": "Basic calculator implementation",
     "slug": "calculator",
     "meta": {
-      "tags": "Logic"
+      "tags": "Logic, Flexbox"
     },
     "created": "2025-08-08T14:01:46.754267"
   }
