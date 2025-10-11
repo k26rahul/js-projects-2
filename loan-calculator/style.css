@@ -7,6 +7,12 @@
   font-size: inherit;
 }
 
+iconify-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+
 :root {
   --bg-dark: hsl(220 59% 91%);
   --bg: hsl(220 100% 97%);
@@ -27,13 +33,17 @@
   --success: hsl(147 19% 36%);
   --info: hsl(217 22% 41%);
 
-  --shadow: 0px 2px 2px oklch(0 0 0 / 0.2), 0px 4px 4px oklch(0 0 0 / 0.1);
+  --gradient: linear-gradient(0deg, var(--bg) 97%, var(--bg-light));
+  --gradient-hover: linear-gradient(0deg, var(--bg) 90%, var(--bg-light));
+
+  --shadow-s: 0px 2px 2px oklch(0 0 0 / 0.2), 0px 4px 4px oklch(0 0 0 / 0.1);
+  --shadow-m: 0px 4px 4px oklch(0 0 0 / 0.2), 0px 8px 8px oklch(0 0 0 / 0.1);
 }
 
 :root.dark-theme {
-  --bg-dark: hsl(228 79% 2%);
-  --bg: hsl(222 55% 5%);
-  --bg-light: hsl(220 35% 10%);
+  --bg-dark: hsl(228 95% 1%);
+  --bg: hsl(222 45% 5%);
+  --bg-light: hsl(220 35% 15%);
 
   --text: hsl(220 100% 98%);
   --text-muted: hsl(220 35% 73%);
@@ -49,16 +59,21 @@
   --warning: hsl(52 19% 57%);
   --success: hsl(146 17% 59%);
   --info: hsl(217 28% 65%);
+
+  --shadow-s: inset 0 1px 2px #ffffff30, 0 1px 2px #00000030, 0 2px 4px #00000015;
+  --shadow-m: inset 0 2px 4px #ffffff30, 0 2px 4px #00000030, 0 4px 8px #00000015;
 }
 
 body {
   min-height: 100vh;
-  padding: 0 1rem;
-  display: grid;
-  place-items: center;
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--bg-dark);
   color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 main {
@@ -70,14 +85,49 @@ main {
   gap: 2rem;
   padding: 4rem 1rem;
   border-radius: 1rem;
-  /* border: 1px solid var(--border); */
+  border-top: 1px solid var(--highlight);
+  background: var(--gradient);
+  box-shadow: var(--shadow-s);
+}
+
+.dark-theme main {
+  box-shadow: var(--shadow-m);
+  border: 1px solid var(--border-muted);
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 50%;
+  border-top: 1px solid var(--highlight);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
   background-color: var(--bg);
-  box-shadow: var(--shadow);
+  color: var(--primary);
+  font-size: 1.2rem;
+  box-shadow: var(--shadow-s);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1000;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1);
+  background-color: var(--bg-light);
+  box-shadow: var(--shadow-m);
 }
 
 h1 {
   font-size: 2.5rem;
   letter-spacing: -0.125rem;
+}
+
+h2 {
+  font-size: 1.5rem;
 }
 
 form {
@@ -103,8 +153,9 @@ form .checkbox-row {
 }
 
 @media (max-width: 520px) {
-  form .row {
-    width: 300px;
+  form {
+    padding-left: 1.5rem;
+    justify-items: start;
   }
 
   form .row:not(.checkbox-row) {
@@ -114,6 +165,7 @@ form .checkbox-row {
 
 input {
   border-radius: 0.25rem;
+  border: none;
   border: 1px solid var(--border-muted);
   background-color: var(--bg-light);
   outline: none;
@@ -143,4 +195,82 @@ input[type='checkbox']:checked::after {
   top: -3px;
   left: 4px;
   font-size: 1.25rem;
+}
+
+.loan-summary {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--bg-light);
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow-s);
+  color: var(--text-muted);
+}
+
+.error-message {
+  margin-bottom: 1rem;
+  color: var(--danger);
+  background-color: color-mix(in srgb, var(--danger) 10%, transparent);
+  border-left: 4px solid var(--danger);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.error-message[hidden] {
+  display: none;
+}
+
+.loan-summary ul {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+.loan-summary span {
+  color: var(--primary);
+}
+
+.loan-schedule {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.table-container {
+  max-width: 100%;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-muted);
+  background-color: var(--bg-light);
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border-muted);
+  white-space: nowrap;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+
+thead {
+  background-color: var(--bg);
+  color: var(--primary);
+}
+
+tbody {
+  color: var(--text-muted);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--bg);
 }

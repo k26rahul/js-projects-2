@@ -1,10 +1,10 @@
 [
   {
     "title": "Loan Calculator",
-    "description": "This is a loan calculator",
+    "description": "Monthly breakdown of loan payment",
     "slug": "loan-calculator",
     "meta": {
-      "tags": "Logic"
+      "tags": "Finance,Calculator,Amortization,Dark Mode"
     },
     "created": "2025-10-08T15:19:40.056069"
   },
