@@ -6,16 +6,42 @@
     <title>Loan Calculator</title>
 
     <meta property="og:title" content="Loan Calculator" />
-    <meta property="og:description" content="Easily calculate EMI" />
+    <meta property="og:description" content="This is a loan calculator" />
     <meta
       property="og:image"
       content="https://k26rahul.github.io/js-projects-2/loan-calculator/screenshot.jpg"
     />
-    <meta name="project:tags" content="Logic, Vidu" />
+    <meta name="project:tags" content="Logic" />
 
+    <link rel="shortcut icon" href="favicon.svg" />
     <link rel="stylesheet" href="style.css" />
+    <script src="main.js"></script>
   </head>
   <body>
-    <h1>Hello</h1>
+    <main>
+      <h1>Loan Calculator</h1>
+
+      <form class="loan-form">
+        <label class="row">
+          Principal (₹)
+          <input name="principal" type="number" inputmode="decimal" />
+        </label>
+
+        <label class="row">
+          Interest rate (% p.a.)
+          <input name="rate" type="number" step="0.01" inputmode="decimal" />
+        </label>
+
+        <label class="row">
+          Monthly payment (₹)
+          <input name="payment" type="number" inputmode="decimal" />
+        </label>
+
+        <label class="row checkbox-row">
+          <input name="includeCurrent" type="checkbox" />
+          Include current month in calculation
+        </label>
+      </form>
+    </main>
   </body>
 </html>

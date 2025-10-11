@@ -1,10 +1,10 @@
 [
   {
     "title": "Loan Calculator",
-    "description": "Easily calculate EMI",
+    "description": "This is a loan calculator",
     "slug": "loan-calculator",
     "meta": {
-      "tags": "Logic, Vidu"
+      "tags": "Logic"
     },
     "created": "2025-10-08T15:19:40.056069"
   },
