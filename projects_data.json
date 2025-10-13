@@ -1,5 +1,14 @@
 [
   {
+    "title": "YouTube CC Extractor",
+    "description": "A tool to extract YouTube subtitles in plain text",
+    "slug": "yt-cc-extractor",
+    "meta": {
+      "tags": "YouTube, API, Netlify Functions, CORS"
+    },
+    "created": "2025-10-13T13:05:18.617680"
+  },
+  {
     "title": "Loan Calculator",
     "description": "Monthly breakdown of loan payment",
     "slug": "loan-calculator",

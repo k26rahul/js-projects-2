@@ -4,12 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouTube CC Extractor</title>
+
+    <meta property="og:title" content="YouTube CC Extractor" />
+    <meta property="og:description" content="A tool to extract YouTube subtitles in plain text" />
+    <meta
+      property="og:image"
+      content="https://k26rahul.github.io/js-projects-2/assets/screenshot.jpg"
+    />
+    <meta name="project:tags" content="YouTube, API, Netlify Functions, CORS" />
+
+    <link rel="shortcut icon" href="favicon.svg" />
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js"></script>
+    <script type="module" src="main.js" defer></script>
   </head>
   <body>
     <main>
       <h1>YouTube CC Extractor</h1>
+
+      <form id="youtube-form">
+        <label for="youtube-url">Enter YouTube URL:</label>
+        <input
+          id="youtube-url"
+          type="url"
+          placeholder="https://www.youtube.com/watch?v=8onHdInj1_w"
+          required
+        />
+        <button type="submit">Fetch</button>
+      </form>
+
+      <div id="embed-container" class="hidden">
+        <iframe
+          id="video-embed"
+          width="560"
+          height="315"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="YouTube video player"
+        ></iframe>
+      </div>
+
+      <div id="loader" class="hidden">⏳ Loading...</div>
+
+      <div id="result" class="hidden">
+        <div id="video-info" class="info-box">
+          <div class="info-header">
+            <h3>Video Details</h3>
+            <button class="copy-btn" data-target="video-info">Copy</button>
+          </div>
+          <div class="info-content">
+            <div><strong>Name:</strong> <span id="video-name">-</span></div>
+            <div>
+              <strong>Author:</strong>
+              <a id="video-author" href="#" target="_blank" rel="noopener">-</a>
+            </div>
+            <div><strong>Duration:</strong> <span id="video-duration">-</span></div>
+          </div>
+        </div>
+
+        <section id="transcripts">
+          <div class="info-box">
+            <div class="info-header">
+              <h3>Auto Transcript <span class="lang-label" id="auto-lang"></span></h3>
+              <button class="copy-btn" data-target="auto">Copy</button>
+            </div>
+            <div id="auto-transcript" class="info-content"></div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-header">
+              <h3>Custom Transcript <span class="lang-label" id="custom-lang"></span></h3>
+              <button class="copy-btn" data-target="custom">Copy</button>
+            </div>
+            <div id="custom-transcript" class="info-content"></div>
+          </div>
+        </section>
+      </div>
     </main>
   </body>
 </html>
