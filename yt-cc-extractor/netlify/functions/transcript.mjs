@@ -1,18 +1,42 @@
 export default async function handler(req, context) {
+  const origin = req.headers.get('origin');
+
+  const isAllowed =
+    (origin && origin.startsWith('http://127.0.0.1:')) || origin === 'https://k26rahul.github.io';
+
+  // Reject disallowed origins
+  if (!isAllowed) {
+    return new Response(JSON.stringify({ error: 'Origin not allowed' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': origin,
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+
+  // Handle preflight OPTIONS request
+  if (req.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 204,
+      headers: corsHeaders,
+    });
+  }
+
   try {
-    // Parse the request URL
     const urlObj = new URL(req.url);
     const videoId = urlObj.searchParams.get('video_id');
 
-    // If no video_id provided → return 400 error
     if (!videoId) {
       return new Response(JSON.stringify({ error: 'Missing required query parameter: video_id' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    // External API call (using built-in fetch)
     const apiUrl = `https://notegpt.io/api/v2/video-transcript?platform=youtube&video_id=${videoId}`;
     const response = await fetch(apiUrl, {
       headers: {
@@ -20,17 +44,16 @@ export default async function handler(req, context) {
       },
     });
 
-    // Forward response from external API
     const data = await response.text();
+
     return new Response(data, {
       status: 200,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { ...corsHeaders, 'Content-Type': 'text/plain' },
     });
   } catch (err) {
-    // Server error
     return new Response(JSON.stringify({ error: err.message || String(err) }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
 }
