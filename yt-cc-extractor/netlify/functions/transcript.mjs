@@ -1,6 +1,3 @@
-// netlify/functions/transcript.mjs
-import fetch from 'node-fetch';
-
 export default async function handler(req, context) {
   try {
     // Parse the request URL
@@ -15,7 +12,7 @@ export default async function handler(req, context) {
       });
     }
 
-    // External API call
+    // External API call (using built-in fetch)
     const apiUrl = `https://notegpt.io/api/v2/video-transcript?platform=youtube&video_id=${videoId}`;
     const response = await fetch(apiUrl, {
       headers: {
