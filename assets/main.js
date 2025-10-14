@@ -29,7 +29,7 @@ function prepareProject(project) {
 function fetchAndRenderProjects() {
   let projectTemplate = document.querySelector('#project-template').innerHTML;
 
-  fetch('projects_data.json')
+  fetch('./assets/projects_data.json')
     .then(response => response.json())
     .then(data => {
       data.forEach(project => {
