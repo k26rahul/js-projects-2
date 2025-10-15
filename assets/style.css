@@ -125,6 +125,12 @@ h1 {
   box-shadow: 0 12px 24px var(--shadow);
 }
 
+@media (max-width: 480px) {
+  .project {
+    width: 100%;
+  }
+}
+
 .badge {
   position: absolute;
   top: 1rem;
@@ -158,12 +164,12 @@ h1 {
   object-position: top;
 }
 
-.project .title {
+.title {
   font-size: 1.25rem;
   color: var(--text-1);
 }
 
-.project .description {
+.description {
   padding-bottom: 0.5rem;
   font-size: 0.95rem;
   color: var(--text-2);
@@ -174,18 +180,18 @@ h1 {
   color: var(--text-3);
 }
 
-.project .creation-date iconify-icon {
+.creation-date iconify-icon {
   font-size: 1rem;
   vertical-align: -0.2rem;
 }
 
-.project .tags {
+.tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.project .tag {
+.tag {
   padding: 0.2rem 0.4rem;
   background-color: var(--bg-3);
   color: var(--text-3);
