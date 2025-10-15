@@ -1,75 +1,41 @@
 :root {
-  /* Base colors */
-  --bg-base: #fafafa;
+  --bg-1: #e6e6e6;
+  --bg-2: #f4f4f4;
+  --bg-3: #fcfcfc;
 
-  /* Card colors */
-  --card-border: #e3e3e3;
-  --card-bg: white;
-  --card-shadow: rgba(0, 0, 0, 0.06);
-  --card-shadow-hover: rgba(0, 0, 0, 0.15);
+  --text-1: #333333;
+  --text-2: #444444;
+  --text-3: #555555;
 
-  /* Typography colors */
-  --text-primary: #202124;
-  --text-secondary: #444;
-  --text-muted: #757575;
+  --accent-alt: #d6e6d7;
+  --accent-alt-text: #124e2c;
 
-  /* Tag colors */
-  --tag-bg: #e8f5e9;
-  --tag-text: #2e7d32;
-  --tag-bg-hover: #2e7d32;
-  --tag-text-hover: white;
+  --accent: #219653;
+  --accent-dark: #1c8549;
+  --accent-text: #fefefe;
 
-  /* Badge colors */
-  --badge-new-bg: #d32f2f;
-  --badge-new-text: white;
-  --badge-new-shadow: rgba(0, 0, 0, 0.25);
-
-  /* Action colors */
-  --action-primary-bg: #2e7d32;
-  --action-primary-text: white;
-  --action-primary-bg-hover: #256428;
-
-  /* Theme toggle colors */
-  --theme-toggle-bg: #1e1e1e;
-  --theme-toggle-color: white;
-  --theme-toggle-shadow: rgba(0, 0, 0, 0.2);
+  --border: #d7d7d7;
+  --shadow: rgba(0, 0, 0, 0.1);
 }
 
 :root.dark-theme {
-  /* Base colors */
-  --bg-base: #0d1b2a;
+  --bg-1: #030712;
+  --bg-2: #0e1321;
+  --bg-3: #171f34;
 
-  /* Card colors */
-  --card-border: #1b2f4a;
-  --card-bg: #142b3b;
-  --card-shadow: rgba(0, 0, 0, 0.5);
-  --card-shadow-hover: rgba(0, 0, 0, 0.7);
+  --text-1: #f0f5fc;
+  --text-2: #e5e7eb;
+  --text-3: #c4cbd7;
 
-  /* Typography colors */
-  --text-primary: #e8eaed;
-  --text-secondary: #b0b0b0;
-  --text-muted: #8c8c8c;
+  --accent-alt: #adc3ff;
+  --accent-alt-text: #0e1938;
 
-  /* Tag colors */
-  --tag-bg: #1b3b5c;
-  --tag-text: #80d8ff;
-  --tag-bg-hover: #0288d1;
-  --tag-text-hover: white;
+  --accent: #2d50b2;
+  --accent-dark: #264395;
+  --accent-text: #fefefe;
 
-  /* Badge colors */
-  --badge-new-bg: #0288d1;
-  --badge-new-text: white;
-  --badge-new-shadow: rgba(0, 0, 0, 0.5);
-
-  /* Action colors */
-  --action-primary-bg: #00395b;
-  --action-primary-bg-hover: #0288d1;
-  --action-primary-text: white;
-
-  /* Theme toggle colors */
-  --theme-toggle-bg: #80d8ff;
-  --theme-toggle-color: #0d1b2a;
-  --theme-toggle-shadow: rgba(255, 255, 255, 0.2);
+  --border: #2a3041;
+  --shadow: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -84,13 +50,6 @@ iconify-icon {
   height: 1em;
 }
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: var(--bg-base);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 #theme-toggle {
   position: fixed;
   top: 1rem;
@@ -99,15 +58,15 @@ body {
   height: 2.5rem;
   border: none;
   border-radius: 50%;
-  background-color: var(--theme-toggle-bg);
-  color: var(--theme-toggle-color);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px var(--theme-toggle-shadow);
-  transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--text-1);
+  color: var(--bg-1);
+  box-shadow: 0 2px 8px var(--text-3);
   z-index: 1000;
+  transition: transform 0.2s, background-color 0.3s, color 0.3s;
 }
 
 #theme-toggle:hover {
@@ -118,6 +77,14 @@ body {
   font-size: 1.2rem;
 }
 
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-1);
+  color: var(--text-1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
 main {
   padding: 1rem;
   padding-bottom: 4rem;
@@ -125,12 +92,9 @@ main {
 
 h1 {
   text-align: center;
-  margin: 2rem auto 3rem;
-  max-width: 800px;
+  padding: 2.5rem 0;
   font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.2;
+  font-weight: 800;
   letter-spacing: -0.02em;
 }
 
@@ -148,24 +112,42 @@ h1 {
   justify-content: space-between;
   gap: 0.5rem;
   padding: 0.75rem;
-  background-color: var(--card-bg);
+  background-color: var(--bg-2);
   position: relative;
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  box-shadow: 0 4px 8px var(--card-shadow);
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 4px var(--shadow);
+  transition: transform 0.2s, box-shadow 0.3s;
 }
 
 .project:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px var(--card-shadow-hover);
+  box-shadow: 0 12px 24px var(--shadow);
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  background-color: var(--accent);
+  color: var(--accent-text);
+  font-size: 0.75em;
+  font-weight: 600;
+  box-shadow: 0 2px 4px var(--shadow);
+  transition: transform 0.1s ease-in-out;
+}
+
+.project:hover .badge {
+  transform: scale(1.4);
 }
 
 .screenshot-wrapper {
   width: 100%;
   aspect-ratio: 4/3;
   overflow: hidden;
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--border);
   border-radius: 6px;
 }
 
@@ -178,33 +160,23 @@ h1 {
 
 .project .title {
   font-size: 1.25rem;
-  color: var(--text-primary);
-  line-height: 1.3;
+  color: var(--text-1);
 }
 
 .project .description {
+  padding-bottom: 0.5rem;
   font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
+  color: var(--text-2);
 }
 
-.new-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: var(--badge-new-bg);
-  color: var(--badge-new-text);
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.75em;
-  font-weight: 600;
-  box-shadow: 0 2px 4px var(--badge-new-shadow);
-  transition: transform 0.1s ease-in-out;
+.creation-date {
+  font-size: 0.85rem;
+  color: var(--text-3);
 }
 
-.project:hover .new-badge {
-  transform: scale(1.4);
+.project .creation-date iconify-icon {
+  font-size: 1rem;
+  vertical-align: -0.2rem;
 }
 
 .project .tags {
@@ -215,39 +187,31 @@ h1 {
 
 .project .tag {
   padding: 0.2rem 0.4rem;
-  background-color: var(--tag-bg);
-  color: var(--tag-text);
+  background-color: var(--bg-3);
+  color: var(--text-3);
   border-radius: 12px;
   font-size: 0.75em;
   font-weight: 500;
-  transition: all 0.2s ease;
+  box-shadow: 0 1px 1px var(--shadow);
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 .project:hover .tag {
-  background-color: var(--tag-bg-hover);
-  color: var(--tag-text-hover);
-}
-
-.project .creation-date {
-  font-size: 0.85em;
-  color: var(--text-muted);
-}
-
-.project .creation-date iconify-icon {
-  font-size: 1rem;
-  vertical-align: -0.2rem;
+  background-color: var(--accent-alt);
+  color: var(--accent-alt-text);
+  box-shadow: none;
 }
 
 .project a {
   padding: 1rem;
   text-align: center;
   text-decoration: none;
-  color: var(--action-primary-text);
-  background-color: var(--action-primary-bg);
-  transition: background-color 0.2s ease;
+  background-color: var(--accent);
+  color: var(--accent-text);
   border-radius: 8px;
+  transition: background-color 0.2s ease;
 }
 
-.project:hover a {
-  background-color: var(--action-primary-bg-hover);
+.project a:hover {
+  background-color: var(--accent-dark);
 }
