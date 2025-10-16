@@ -5,6 +5,7 @@ console.log('=== YouTube CC Extractor ===');
 // === DOM Elements ===
 const formEl = document.querySelector('form');
 const urlInput = document.querySelector('.youtube-url');
+const pasteBtn = document.querySelector('.paste-btn');
 
 const loaderEl = document.querySelector('.loader');
 const embedContainer = document.querySelector('.embed-container');
@@ -18,6 +19,7 @@ const copyBtn = document.querySelector('.copy-btn');
 // === Event Listeners ===
 formEl.addEventListener('submit', handleFormSubmit);
 copyBtn.addEventListener('click', handleCopy);
+pasteBtn.addEventListener('click', handlePasteAndGo);
 
 // === Core Logic ===
 
@@ -114,4 +116,26 @@ function handleCopy() {
     copyBtn.textContent = 'Copied!';
     setTimeout(() => (copyBtn.textContent = 'Copy'), 1500);
   });
+}
+
+async function handlePasteAndGo() {
+  try {
+    const text = (await navigator.clipboard.readText()).trim();
+    if (!text) {
+      alert('Clipboard is empty.');
+      return;
+    }
+
+    const videoId = extractVideoId(text);
+    if (!videoId) {
+      alert('Clipboard does not contain a valid YouTube link.');
+      return;
+    }
+
+    urlInput.value = text;
+    formEl.requestSubmit();
+  } catch (err) {
+    console.error(err);
+    alert('Failed to read clipboard.');
+  }
 }
