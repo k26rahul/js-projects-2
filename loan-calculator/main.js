@@ -1,35 +1,23 @@
-initializeThemeToggle();
-
-function initializeThemeToggle() {
-  const themeToggle = document.querySelector('#theme-toggle');
-
-  themeToggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark-theme');
-    const isDark = document.documentElement.classList.contains('dark-theme');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-}
+const html = String.raw;
 
 const form = document.querySelector('.loan-form');
 const tbody = document.querySelector('.loan-schedule tbody');
 const errorEl = document.querySelector('#summary-error');
-
-// helper to show or clear error
-function showError(message) {
-  if (message) {
-    errorEl.textContent = message;
-    errorEl.hidden = false;
-  } else {
-    errorEl.textContent = '';
-    errorEl.hidden = true;
-  }
-}
 
 const rupeeFormatter = new Intl.NumberFormat('en-IN', {
   style: 'currency',
   currency: 'INR',
   maximumFractionDigits: 0,
 });
+
+const inputs = form.querySelectorAll('input');
+inputs.forEach(input => {
+  const eventName = input.type === 'checkbox' ? 'change' : 'input';
+  input.addEventListener(eventName, updateLoanCalculation);
+});
+
+initializeThemeToggle();
+updateLoanCalculation(); // initial render
 
 function updateLoanCalculation() {
   const data = new FormData(form);
@@ -38,11 +26,14 @@ function updateLoanCalculation() {
   const payment = parseFloat(data.get('payment'));
   const includeCurrent = data.get('includeCurrent') === 'on';
 
-  // basic validation
+  // check empty values
   if (!principal || !annualRate || !payment) {
-    renderSchedule([]);
+    renderSchedule([]); // empty schedule, no rows will be shown in table
     return;
   }
+
+  // hide error
+  errorEl.hidden = true;
 
   const monthlyRate = annualRate / 12 / 100;
   let balance = principal;
@@ -58,7 +49,7 @@ function updateLoanCalculation() {
   // quick impossible-loan check
   const firstInterest = balance * monthlyRate;
   if (payment <= firstInterest) {
-    showError('Monthly payment will never pay off the loan. Increase the payment.');
+    errorEl.hidden = false; // show error
     renderSchedule([]);
     return;
   }
@@ -70,9 +61,9 @@ function updateLoanCalculation() {
     const interest = balance * monthlyRate;
     let principalPaid = payment - interest;
 
-    if (principalPaid > balance) principalPaid = balance;
+    if (principalPaid > balance) principalPaid = balance; // don't pay more than balance
     balance -= principalPaid;
-    if (balance < 1) balance = 0;
+    if (balance < 1) balance = 0; // balance is ₹1, pay it next month.. no!
 
     schedule.push({
       month: date.toLocaleString('en-US', { month: 'short', year: 'numeric' }),
@@ -93,7 +84,6 @@ function updateLoanCalculation() {
 }
 
 function renderSchedule(schedule) {
-  // cache DOM nodes once at the top
   const elLastMonth = document.querySelector('#summary-last-month');
   const elMonths = document.querySelector('#summary-months');
   const elPrincipal = document.querySelector('#summary-principal');
@@ -103,14 +93,14 @@ function renderSchedule(schedule) {
   // clear previous table content
   tbody.innerHTML = '';
 
-  // always reset summary fields to dashes
+  // reset summary fields to dashes
   elLastMonth.textContent = '—';
   elMonths.textContent = '—';
   elPrincipal.textContent = '—';
   elInterest.textContent = '—';
   elTotal.textContent = '—';
 
-  // if schedule is empty (e.g., invalid input), stop here
+  // if schedule is empty, stop here
   if (schedule.length === 0) return;
 
   // otherwise, fill table and summary values
@@ -121,7 +111,7 @@ function renderSchedule(schedule) {
     totalPrincipal += row.principalPaid;
     totalInterest += row.interest;
 
-    const html = `
+    const _html = html`
       <tr>
         <td>${row.month}</td>
         <td>${rupeeFormatter.format(row.principalPaid)}</td>
@@ -129,25 +119,25 @@ function renderSchedule(schedule) {
         <td>${rupeeFormatter.format(row.balance)}</td>
       </tr>
     `;
-    tbody.insertAdjacentHTML('beforeend', html);
+    tbody.insertAdjacentHTML('beforeend', _html);
   }
 
   const last = schedule[schedule.length - 1];
+  const totalPayment = totalPrincipal + totalInterest;
 
   elLastMonth.textContent = last.month;
   elMonths.textContent = schedule.length;
   elPrincipal.textContent = rupeeFormatter.format(totalPrincipal);
   elInterest.textContent = rupeeFormatter.format(totalInterest);
-
-  const totalPayment = totalPrincipal + totalInterest;
   elTotal.textContent = rupeeFormatter.format(totalPayment);
 }
 
-const inputs = form.querySelectorAll('input');
+function initializeThemeToggle() {
+  const themeToggle = document.querySelector('#theme-toggle');
 
-inputs.forEach(input => {
-  const eventName = input.type === 'checkbox' ? 'change' : 'input';
-  input.addEventListener(eventName, updateLoanCalculation);
-});
-
-updateLoanCalculation(); // initial render
+  themeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark-theme');
+    const isDark = document.documentElement.classList.contains('dark-theme');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+}
