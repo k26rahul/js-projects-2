@@ -10,9 +10,9 @@ const rupeeFormatter = new Intl.NumberFormat('en-IN', {
   maximumFractionDigits: 0,
 });
 
-const inputs = form.querySelectorAll('input');
+const inputs = form.querySelectorAll('input, select');
 inputs.forEach(input => {
-  const eventName = input.type === 'checkbox' ? 'change' : 'input';
+  const eventName = input.type === 'checkbox' || input.type === 'radio' ? 'change' : 'input';
   input.addEventListener(eventName, updateLoanCalculation);
 });
 
@@ -23,12 +23,12 @@ function updateLoanCalculation() {
   const data = new FormData(form);
   const principal = parseFloat(data.get('principal'));
   const annualRate = parseFloat(data.get('rate'));
-  const payment = parseFloat(data.get('payment'));
   const includeCurrent = data.get('includeCurrent') === 'on';
+  const mode = data.get('calcMode'); // now "fixed-payment" or "fixed-duration"
 
   // check empty values
-  if (!principal || !annualRate || !payment) {
-    renderSchedule([]); // empty schedule, no rows will be shown in table
+  if (!principal || !annualRate) {
+    renderSchedule([], null); // empty schedule, no rows will be shown in table
     return;
   }
 
@@ -37,7 +37,39 @@ function updateLoanCalculation() {
 
   const monthlyRate = annualRate / 12 / 100;
   let balance = principal;
+  let payment, totalMonths;
 
+  // decide payment based on mode
+  if (mode === 'fixed-payment') {
+    totalMonths = null; // unknown, determined by amortization
+
+    payment = parseFloat(data.get('payment'));
+    if (!payment) {
+      renderSchedule([], null);
+      return;
+    }
+
+    // quick impossible-loan check
+    const firstInterest = balance * monthlyRate;
+    if (payment <= firstInterest) {
+      errorEl.hidden = false; // show error
+      renderSchedule([], null);
+      return;
+    }
+  } else if (mode === 'fixed-duration') {
+    totalMonths = parseInt(data.get('months'));
+
+    // formula: emi = p * r * (1+r)^n / ((1+r)^n - 1)
+    const n = totalMonths;
+    const r = monthlyRate;
+    if (r === 0) {
+      payment = principal / n;
+    } else {
+      payment = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+  }
+
+  // amortization loop
   let date = new Date();
   if (!includeCurrent) {
     date.setMonth(date.getMonth() + 1);
@@ -46,15 +78,6 @@ function updateLoanCalculation() {
   const schedule = [];
   let monthCount = 0;
 
-  // quick impossible-loan check
-  const firstInterest = balance * monthlyRate;
-  if (payment <= firstInterest) {
-    errorEl.hidden = false; // show error
-    renderSchedule([]);
-    return;
-  }
-
-  // compute amortization
   while (balance > 0) {
     monthCount++;
 
@@ -80,12 +103,13 @@ function updateLoanCalculation() {
     }
   }
 
-  renderSchedule(schedule);
+  renderSchedule(schedule, payment);
 }
 
-function renderSchedule(schedule) {
+function renderSchedule(schedule, monthlyPayment) {
   const elLastMonth = document.querySelector('#summary-last-month');
   const elMonths = document.querySelector('#summary-months');
+  const elMonthly = document.querySelector('#summary-monthly');
   const elPrincipal = document.querySelector('#summary-principal');
   const elInterest = document.querySelector('#summary-interest');
   const elTotal = document.querySelector('#summary-total');
@@ -96,6 +120,7 @@ function renderSchedule(schedule) {
   // reset summary fields to dashes
   elLastMonth.textContent = '—';
   elMonths.textContent = '—';
+  elMonthly.textContent = '—';
   elPrincipal.textContent = '—';
   elInterest.textContent = '—';
   elTotal.textContent = '—';
@@ -127,6 +152,7 @@ function renderSchedule(schedule) {
 
   elLastMonth.textContent = last.month;
   elMonths.textContent = schedule.length;
+  elMonthly.textContent = rupeeFormatter.format(monthlyPayment);
   elPrincipal.textContent = rupeeFormatter.format(totalPrincipal);
   elInterest.textContent = rupeeFormatter.format(totalInterest);
   elTotal.textContent = rupeeFormatter.format(totalPayment);

@@ -42,18 +42,41 @@
       <form class="loan-form">
         <label class="row">
           Principal (₹)
-          <input name="principal" type="number" inputmode="decimal" value="800000" />
+          <input name="principal" type="number" min="0" inputmode="decimal" value="800000" />
         </label>
 
         <label class="row">
           Interest rate (% p.a.)
-          <input name="rate" type="number" step="0.01" inputmode="decimal" value="12" />
+          <input name="rate" type="number" min="0" step="0.1" inputmode="decimal" value="12" />
         </label>
 
-        <label class="row">
-          Monthly payment (₹)
-          <input name="payment" type="number" inputmode="decimal" value="25000" />
-        </label>
+        <div class="mode-cards">
+          <label class="mode-card">
+            <input type="radio" name="calcMode" value="fixed-payment" checked />
+            <div class="mode-content">
+              <div>Fixed Monthly Payment</div>
+              <input name="payment" type="number" min="0" inputmode="decimal" value="25000" />
+            </div>
+          </label>
+
+          <label class="mode-card">
+            <input type="radio" name="calcMode" value="fixed-duration" />
+            <div class="mode-content">
+              <div>Fixed Duration</div>
+              <select name="months">
+                <option value="3">3 months</option>
+                <option value="6">6 months</option>
+                <option value="9">9 months</option>
+                <option value="12">12 months</option>
+                <option value="18">18 months</option>
+                <option value="24">24 months</option>
+                <option value="36">36 months</option>
+                <option value="48">48 months</option>
+                <option value="60">60 months</option>
+              </select>
+            </div>
+          </label>
+        </div>
 
         <label class="row checkbox-row">
           <input name="includeCurrent" type="checkbox" checked />
@@ -70,6 +93,7 @@
         <ul>
           <li><strong>Loan complete by:</strong> <span id="summary-last-month">—</span></li>
           <li><strong>Total months:</strong> <span id="summary-months">—</span></li>
+          <li><strong>Monthly payment:</strong> <span id="summary-monthly">—</span></li>
           <li><strong>Total principal paid:</strong> <span id="summary-principal">—</span></li>
           <li><strong>Total interest paid:</strong> <span id="summary-interest">—</span></li>
           <li><strong>Total payment:</strong> <span id="summary-total">—</span></li>
