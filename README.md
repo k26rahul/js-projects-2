@@ -8,7 +8,7 @@ GitHub: [https://github.com/k26rahul/js-projects-2](https://github.com/k26rahul/
 
 Live site: [https://k26rahul.github.io/js-projects-2/](https://k26rahul.github.io/js-projects-2/)
 
-- Practice folder: [https://k26rahul.github.io/js-projects-2/practice](https://k26rahul.github.io/js-projects-2/practice)
+Practice folder: [https://k26rahul.github.io/js-projects-2/practice](https://k26rahul.github.io/js-projects-2/practice)
 
 ## Projects
 
