@@ -8,9 +8,10 @@ GitHub: [https://github.com/k26rahul/js-projects-2](https://github.com/k26rahul/
 
 Live site: [https://k26rahul.github.io/js-projects-2/](https://k26rahul.github.io/js-projects-2/)
 
+- Practice folder: [https://k26rahul.github.io/js-projects-2/practice](https://k26rahul.github.io/js-projects-2/practice)
+
 ## Projects
 
-- [Practice folder](https://k26rahul.github.io/js-projects-2/practice)
 - [YouTube CC Extractor](https://k26rahul.github.io/js-projects-2/yt-cc-extractor)
 - [Loan Calculator](https://k26rahul.github.io/js-projects-2/loan-calculator)
 - [Testimonials](https://k26rahul.github.io/js-projects-2/testimonials)
