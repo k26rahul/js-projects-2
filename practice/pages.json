@@ -1,7 +1,10 @@
 [
   "basic-forms/index.html",
+  "calculator-skeleton.html",
   "centered-main.html",
   "index.html",
+  "loan-calculator/index.html",
   "myPromise/index.html",
+  "test.html",
   "tiny-testimonials.html"
 ]

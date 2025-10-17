@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>loan-calculator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>Loan Calculator</h1>
+
+      <form>
+        <label>
+          Principal (₹)
+          <input type="number" min="0" value="100" id="principal-input" />
+        </label>
+
+        <label>
+          Interest rate (% p.a.)
+          <input type="number" min="0" value="12" id="interest-rate-input" />
+        </label>
+
+        <label>
+          Monthly payment (₹)
+          <input type="number" min="0" value="20" id="monthly-payment-input" />
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="include-current-month-checkbox" />
+          Include current month in calculation
+        </label>
+      </form>
+
+      <h2>Summary</h2>
+
+      <section class="loan-summary">
+        <p class="error-message" hidden>
+          Monthly payment will never pay off the loan. Increase the payment.
+        </p>
+        <ul>
+          <li><strong>Loan complete by:</strong> <span id="summary-last-month">—</span></li>
+          <li><strong>Total months:</strong> <span id="summary-months">—</span></li>
+          <li><strong>Monthly payment:</strong> <span id="summary-monthly">—</span></li>
+          <li><strong>Total principal paid:</strong> <span id="summary-principal">—</span></li>
+          <li><strong>Total interest paid:</strong> <span id="summary-interest">—</span></li>
+          <li><strong>Total payment:</strong> <span id="summary-total">—</span></li>
+        </ul>
+      </section>
+
+      <h2>Amortization Schedule</h2>
+
+      <section class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Principal Paid</th>
+              <th>Interest Charged</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oct 2025</td>
+              <td>₹17,000</td>
+              <td>₹8,000</td>
+              <td>₹7,83,000</td>
+            </tr>
+            <tr>
+              <td>Oct 2025</td>
+              <td>₹17,000</td>
+              <td>₹8,000</td>
+              <td>₹7,83,000</td>
+            </tr>
+            <tr>
+              <td>Oct 2025</td>
+              <td>₹17,000</td>
+              <td>₹8,000</td>
+              <td>₹7,83,000</td>
+            </tr>
+            <tr>
+              <td>Oct 2025</td>
+              <td>₹17,000</td>
+              <td>₹8,000</td>
+              <td>₹7,83,000</td>
+            </tr>
+            <tr>
+              <td>Oct 2025</td>
+              <td>₹17,000</td>
+              <td>₹8,000</td>
+              <td>₹7,83,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
