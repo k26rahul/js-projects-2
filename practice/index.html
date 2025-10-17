@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>practice | js-projects-2</title>
+  </head>
+  <body>
+    <h1>practice | js-projects-2</h1>
+
+    <ul id="links"></ul>
+
+    <script>
+      fetch('pages.json')
+        .then(resp => resp.json())
+        .then(pages => {
+          const ul = document.getElementById('links');
+          pages.forEach(path => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = path;
+            a.textContent = path;
+            li.appendChild(a);
+            ul.appendChild(li);
+          });
+        })
+        .catch(err => console.error('Error loading pages.json:', err));
+    </script>
+  </body>
+</html>
