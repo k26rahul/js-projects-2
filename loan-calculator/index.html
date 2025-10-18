@@ -39,31 +39,40 @@
     <main>
       <h1>Loan Calculator</h1>
 
-      <form class="loan-form">
+      <form>
         <label class="row">
           Principal (₹)
-          <input name="principal" type="number" min="0" inputmode="decimal" value="800000" />
+          <input name="principal" type="number" min="0" inputmode="decimal" value="100" />
         </label>
 
         <label class="row">
           Interest rate (% p.a.)
-          <input name="rate" type="number" min="0" step="0.1" inputmode="decimal" value="12" />
+          <input
+            name="annualRate"
+            type="number"
+            min="0"
+            step="0.1"
+            inputmode="decimal"
+            value="12"
+          />
         </label>
 
-        <div class="mode-cards">
-          <label class="mode-card">
-            <input type="radio" name="calcMode" value="fixed-payment" checked />
-            <div class="mode-content">
-              <div>Fixed Monthly Payment</div>
-              <input name="payment" type="number" min="0" inputmode="decimal" value="25000" />
+        <div class="mode-options">
+          <label class="mode-option">
+            <input type="radio" name="calculationMode" value="fixedPayment" checked />
+
+            <div class="content">
+              <div>Fixed Monthly Payment (₹)</div>
+              <input name="monthlyPayment" type="number" min="0" inputmode="decimal" value="20" />
             </div>
           </label>
 
-          <label class="mode-card">
-            <input type="radio" name="calcMode" value="fixed-duration" />
-            <div class="mode-content">
+          <label class="mode-option">
+            <input type="radio" name="calculationMode" value="fixedDuration" />
+
+            <div class="content">
               <div>Fixed Duration</div>
-              <select name="months">
+              <select name="duration">
                 <option value="3">3 months</option>
                 <option value="6">6 months</option>
                 <option value="9">9 months</option>
@@ -79,15 +88,15 @@
         </div>
 
         <label class="row checkbox-row">
-          <input name="includeCurrent" type="checkbox" checked />
+          <input name="includeCurrentMonth" type="checkbox" checked />
           Include current month in calculation
         </label>
       </form>
 
       <h2>Summary</h2>
 
-      <section class="loan-summary">
-        <p id="summary-error" class="error-message" hidden>
+      <section class="summary">
+        <p id="error-message" hidden>
           Monthly payment will never pay off the loan. Increase the payment.
         </p>
         <ul>
@@ -102,8 +111,8 @@
 
       <h2>Amortization Schedule</h2>
 
-      <section class="loan-schedule">
-        <div class="table-container">
+      <section class="table-container">
+        <div class="table-wrapper">
           <table>
             <thead>
               <tr>
