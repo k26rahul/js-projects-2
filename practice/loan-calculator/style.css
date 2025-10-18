@@ -20,8 +20,8 @@ main {
   align-items: center;
   gap: 1rem;
   padding: 2rem;
-  background-color: #f4f4f4;
-  border: 1px solid #999;
+  background-color: #fefefe;
+  border: 1px solid #ccc;
   border-radius: 1rem;
 }
 
@@ -52,13 +52,33 @@ input[type='checkbox'] {
   height: 1.25rem;
 }
 
-.loan-summary ul {
+.summary ul {
   list-style: none;
   line-height: 1.75;
 }
 
-.loan-summary strong {
+.summary strong {
   font-weight: 500;
+}
+
+#error-message {
+  padding: 0.5rem;
+  background-color: #ffe5e9;
+  color: crimson;
+  border-left: 2px solid crimson;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-wrapper {
+  width: fit-content;
+  margin: 0 auto;
+  border: 2px solid #eee;
+  border-radius: 1rem;
+  overflow-y: hidden;
 }
 
 table {
@@ -78,5 +98,5 @@ td:first-child {
 }
 
 tbody tr:nth-child(even) {
-  background-color: #ccc;
+  background-color: #eee;
 }

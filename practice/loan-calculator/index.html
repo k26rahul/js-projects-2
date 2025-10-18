@@ -14,7 +14,7 @@
       <form>
         <label>
           Principal (₹)
-          <input type="number" min="0" value="100" id="principal-input" />
+          <input type="number" min="1" value="100" id="principal-input" />
         </label>
 
         <label>
@@ -24,7 +24,7 @@
 
         <label>
           Monthly payment (₹)
-          <input type="number" min="0" value="20" id="monthly-payment-input" />
+          <input type="number" min="1" value="20" id="monthly-payment-input" />
         </label>
 
         <label class="checkbox-label">
@@ -33,12 +33,12 @@
         </label>
       </form>
 
-      <h2>Summary</h2>
+      <p id="error-message" hidden>
+        Monthly payment will never pay off the loan. Increase the payment.
+      </p>
 
-      <section class="loan-summary">
-        <p class="error-message" hidden>
-          Monthly payment will never pay off the loan. Increase the payment.
-        </p>
+      <h2>Summary</h2>
+      <section class="summary">
         <ul>
           <li><strong>Loan complete by:</strong> <span id="summary-last-month">—</span></li>
           <li><strong>Total months:</strong> <span id="summary-months">—</span></li>
@@ -50,50 +50,20 @@
       </section>
 
       <h2>Amortization Schedule</h2>
-
       <section class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Principal Paid</th>
-              <th>Interest Charged</th>
-              <th>Balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Oct 2025</td>
-              <td>₹17,000</td>
-              <td>₹8,000</td>
-              <td>₹7,83,000</td>
-            </tr>
-            <tr>
-              <td>Oct 2025</td>
-              <td>₹17,000</td>
-              <td>₹8,000</td>
-              <td>₹7,83,000</td>
-            </tr>
-            <tr>
-              <td>Oct 2025</td>
-              <td>₹17,000</td>
-              <td>₹8,000</td>
-              <td>₹7,83,000</td>
-            </tr>
-            <tr>
-              <td>Oct 2025</td>
-              <td>₹17,000</td>
-              <td>₹8,000</td>
-              <td>₹7,83,000</td>
-            </tr>
-            <tr>
-              <td>Oct 2025</td>
-              <td>₹17,000</td>
-              <td>₹8,000</td>
-              <td>₹7,83,000</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Principal Paid</th>
+                <th>Interest Charged</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </section>
     </main>
   </body>
