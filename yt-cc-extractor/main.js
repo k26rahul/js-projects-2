@@ -1,4 +1,4 @@
-import { formatDuration, extractVideoId } from './utils.js';
+import { formatDuration, extractVideoId, isLocalHost } from './utils.js';
 
 console.log('=== YouTube CC Extractor ===');
 
@@ -36,8 +36,8 @@ async function handleFormSubmit(event) {
   prepareUI(videoId);
 
   try {
-    const data = await fetchVideoData(videoId);
-    renderTranscript(data);
+    const result = await fetchVideoData(videoId);
+    renderTranscript(result);
   } catch (err) {
     console.error(err);
     alert('Error fetching data.');
@@ -47,48 +47,41 @@ async function handleFormSubmit(event) {
 }
 
 async function fetchVideoData(videoId) {
-  const endpoint = `https://yt-cc-extractor.netlify.app/api/transcript?platform=youtube&video_id=${videoId}`;
+  const API_BASE = isLocalHost() ? 'http://localhost:5050' : 'https://yt-cc-extractor.netlify.app';
+
+  const endpoint = `${API_BASE}/.netlify/functions/transcript?platform=youtube&video_id=${videoId}`;
   const response = await fetch(endpoint);
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   return response.json();
 }
 
-function renderTranscript(data) {
-  const message = data?.message;
-  if (message && message.toLowerCase() === 'no transcript') {
-    alert('This video has no transcript available.');
+function renderTranscript(result) {
+  const { video, transcript } = result?.data || {};
+
+  if (!video || !transcript) {
+    alert('No transcript data available.');
     return;
   }
 
-  const info = data?.data?.videoInfo;
-  if (!info) {
-    alert('No video info found.');
-    return;
-  }
-
-  const langMeta = data?.data?.language_code?.[0];
-  const langCode = langMeta?.code || 'Unknown';
-  const langName = langMeta?.name || langCode;
-
-  const transcriptLang = data?.data?.transcripts?.[langCode] || {};
-  const transcriptArray = Array.isArray(transcriptLang.auto) ? transcriptLang.auto : [];
-
-  const transcriptText = buildTranscriptContent(info, transcriptArray);
+  const transcriptText = buildTranscriptContent(video, transcript);
   transcriptEl.textContent = transcriptText;
-  transcriptLangEl.textContent = `(${langName})`;
+
+  const langLabel = transcript?.language?.name || transcript?.language?.code || 'Unavailable';
+  transcriptLangEl.textContent = `(${langLabel})`;
 
   resultEl.classList.remove('hidden');
 }
 
-function buildTranscriptContent(info, transcriptArray) {
+function buildTranscriptContent(video, transcript) {
+  const dash = '—';
   const headerSection = [
-    `Title: ${info.name || '-'}`,
-    `Author: ${info.author || '-'}`,
-    `Duration: ${formatDuration(info.duration)}`,
+    `Title: ${video.name || dash}`,
+    `Author: ${video.author || dash}`,
+    `Duration: ${video.duration ? formatDuration(video.duration) : dash}`,
   ].join('\n');
 
   const transcriptSectionHeader = '\n\n=== Transcript ===\n';
-  const transcriptBody = transcriptArray.map(t => t.text).join('\n\n') || 'No transcript found.';
+  const transcriptBody = transcript.content.map(t => t.text).join('\n\n') || 'No transcript found.';
 
   return `${headerSection}${transcriptSectionHeader}\n${transcriptBody}`;
 }

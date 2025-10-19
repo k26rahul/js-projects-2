@@ -24,3 +24,9 @@ export function extractVideoId(url) {
     url.match(/youtube\.com\/embed\/([^?]+)/);
   return match ? match[1] : null;
 }
+
+// Returns true if running on localhost or 127.0.0.1
+export function isLocalHost() {
+  const { hostname } = location;
+  return hostname === 'localhost' || hostname.startsWith('127.0.0.1');
+}
