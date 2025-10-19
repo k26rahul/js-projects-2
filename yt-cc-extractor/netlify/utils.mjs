@@ -36,12 +36,8 @@ export function isAllowedOrigin(origin, allowedOrigins) {
 }
 
 // Verify API key.
-export function authorizeRequest(req) {
+export function authorizeRequest(providedApiKey, expectedApiKey) {
   if (isLocal()) return true;
-
-  const providedApiKey = req.headers.get('x-api-key');
-  const expectedApiKey = process.env.API_KEY;
-
   return Boolean(providedApiKey && expectedApiKey && providedApiKey === expectedApiKey);
 }
 

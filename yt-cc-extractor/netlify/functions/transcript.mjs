@@ -48,6 +48,7 @@ function buildCleanData(upstream) {
 export default async function handler(req, context) {
   const method = req.method;
   const origin = req.headers.get('origin');
+  const url = new URL(req.url);
 
   if (!isAllowedMethod(method, ALLOWED_METHODS) || !isAllowedOrigin(origin, ALLOWED_ORIGINS))
     return jsonResponse({ code: 403 });
@@ -59,10 +60,10 @@ export default async function handler(req, context) {
   }
 
   // Authorization
-  if (!authorizeRequest(req)) return jsonResponse({ code: 401 });
+  const providedApiKey = url.searchParams.get('x-api-key');
+  if (!authorizeRequest(providedApiKey, process.env.API_KEY)) return jsonResponse({ code: 401 });
 
   try {
-    const url = new URL(req.url);
     const videoId = url.searchParams.get('video_id');
     const platform = url.searchParams.get('platform');
     if (!videoId || !platform) return jsonResponse({ code: 400, message: 'Bad Request' });
