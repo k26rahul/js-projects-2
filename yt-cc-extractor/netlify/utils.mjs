@@ -46,6 +46,6 @@ export function buildCorsHeaders(origin, allowedMethods) {
   return {
     'Access-Control-Allow-Origin': origin,
     'Access-Control-Allow-Methods': allowedMethods.join(', '),
-    'Access-Control-Allow-Headers': 'Content-Type, X-API-Key, X-Nonce, X-T',
+    'Access-Control-Allow-Headers': 'Content-Type',
   };
 }
