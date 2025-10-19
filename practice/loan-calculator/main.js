@@ -3,6 +3,7 @@ const html = String.raw;
 const principalInput = document.querySelector('#principal-input');
 const interestRateInput = document.querySelector('#interest-rate-input');
 const monthlyPaymentInput = document.querySelector('#monthly-payment-input');
+const durationSelect = document.querySelector('#duration-select');
 const includeCurrentMonthCheckbox = document.querySelector('#include-current-month-checkbox');
 
 const errorMessageEl = document.querySelector('#error-message');
@@ -16,7 +17,18 @@ const summaryTotalEl = document.querySelector('#summary-total');
 principalInput.addEventListener('input', calculateLoan);
 interestRateInput.addEventListener('input', calculateLoan);
 monthlyPaymentInput.addEventListener('input', calculateLoan);
+durationSelect.addEventListener('change', calculateLoan);
 includeCurrentMonthCheckbox.addEventListener('change', calculateLoan);
+
+document.querySelectorAll('input[name="calculationMode"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    let show = radio.value;
+    let hide = radio.value == 'fixedPayment' ? 'fixedDuration' : 'fixedPayment';
+    document.querySelector(`label[data-${show}`).classList.remove('hidden');
+    document.querySelector(`label[data-${hide}`).classList.add('hidden');
+    calculateLoan();
+  });
+});
 
 const rupeeFormatter = new Intl.NumberFormat('en-IN', {
   style: 'currency',
@@ -27,24 +39,43 @@ const rupeeFormatter = new Intl.NumberFormat('en-IN', {
 calculateLoan();
 
 function calculateLoan() {
-  errorMessageEl.hidden = true;
-  document.querySelector('tbody').innerHTML = '';
-
-  summaryLastMonthEl.textContent = '—';
-  summaryMonthsEl.textContent = '—';
-  summaryMonthlyEl.textContent = '—';
-  summaryPrincipalEl.textContent = '—';
-  summaryInterestEl.textContent = '—';
-  summaryTotalEl.textContent = '—';
+  resetUI();
 
   let principal = parseFloat(principalInput.value);
   let interestRate = parseFloat(interestRateInput.value) / 100 / 12; // [0-100] % p.a. -> [0-1] monthly rate
   let monthlyPayment = parseFloat(monthlyPaymentInput.value);
+  let duration = parseFloat(durationSelect.value);
+  let calculationMode = document.querySelector('input[name="calculationMode"]:checked').value;
 
   if (!(principal > 0 && interestRate >= 0 && monthlyPayment > 0)) {
     errorMessageEl.textContent = 'Invalid inputs';
     errorMessageEl.hidden = false;
     return;
+  }
+
+  if (calculationMode == 'fixedDuration') {
+    if (interestRate == 0) {
+      monthlyPayment = principal / duration;
+    } else {
+      // EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]. In this formula, P is the principal loan amount, R is the monthly interest rate (annual rate divided by 12), and N is the loan tenure in months.
+      let P = principal;
+      let R = interestRate;
+      let N = duration;
+      monthlyPayment = (P * R * (1 + R) ** N) / ((1 + R) ** N - 1);
+
+      if (Number.isNaN(monthlyPayment)) {
+        // possibly due to (1+R)^N being Infinity
+        errorMessageEl.textContent = 'Calculation failed. Decrease duration or interest rate.';
+        errorMessageEl.hidden = false;
+        return;
+      }
+
+      if (monthlyPayment - principal * interestRate < 0.01) {
+        // ensure monthlyPayment > interest per month
+        // otherwise, the balance will never reduce
+        monthlyPayment += 0.01;
+      }
+    }
   }
 
   let balance = principal;
@@ -62,6 +93,7 @@ function calculateLoan() {
     }
 
     balance -= principalPaid;
+    balance = balance > 0 && balance < 0.01 ? 0 : balance;
     monthsCount += 1;
 
     updateTable({
@@ -72,12 +104,29 @@ function calculateLoan() {
     });
   }
 
+  if (calculationMode == 'fixedDuration' && monthsCount < duration) {
+    errorMessageEl.textContent = `Not possible to extend your EMI over ${duration} months.`;
+    errorMessageEl.hidden = false;
+  }
+
   updateSummary({
     monthsCount,
     monthlyPayment,
     principal,
     balance,
   });
+}
+
+function resetUI() {
+  errorMessageEl.hidden = true;
+  document.querySelector('tbody').innerHTML = '';
+
+  summaryLastMonthEl.textContent = '—';
+  summaryMonthsEl.textContent = '—';
+  summaryMonthlyEl.textContent = '—';
+  summaryPrincipalEl.textContent = '—';
+  summaryInterestEl.textContent = '—';
+  summaryTotalEl.textContent = '—';
 }
 
 function updateTable({ monthsCount, interestPaid, principalPaid, balance }) {

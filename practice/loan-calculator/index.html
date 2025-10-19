@@ -22,9 +22,38 @@
           <input type="number" min="0" value="12" id="interest-rate-input" />
         </label>
 
-        <label>
+        <div class="mode-options">
+          <p>Choose your calculation mode</p>
+
+          <label class="radio-label">
+            <input type="radio" name="calculationMode" value="fixedPayment" />
+            Fixed monthly payment
+          </label>
+
+          <label class="radio-label">
+            <input type="radio" name="calculationMode" value="fixedDuration" checked />
+            Fixed duration
+          </label>
+        </div>
+
+        <label class="hidden" data-fixedPayment>
           Monthly payment (₹)
           <input type="number" min="1" value="20" id="monthly-payment-input" />
+        </label>
+
+        <label data-fixedDuration>
+          Duration
+          <select id="duration-select">
+            <option value="3">3 months</option>
+            <option value="6">6 months</option>
+            <option value="9">9 months</option>
+            <option value="12">12 months</option>
+            <option value="18">18 months</option>
+            <option value="24">24 months</option>
+            <option value="36">36 months</option>
+            <option value="48">48 months</option>
+            <option value="60">60 months</option>
+          </select>
         </label>
 
         <label class="checkbox-label">
