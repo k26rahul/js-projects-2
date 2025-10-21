@@ -10,7 +10,7 @@ import {
 
 const ALLOWED_METHODS = ['GET', 'OPTIONS'];
 const ALLOWED_ORIGINS = ['https://k26rahul.github.io'];
-const ALLOWED_HEADERS = ['Content-Type', 'X-API-Key'];
+const ALLOWED_HEADERS = ['X-API-Key'];
 
 const EXTERNAL_API_BASE = process.env.EXTERNAL_API_BASE;
 const EXTERNAL_API_COOKIE = process.env.EXTERNAL_API_COOKIE;
