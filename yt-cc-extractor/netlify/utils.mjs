@@ -33,7 +33,7 @@ export function isAllowedMethod(method, allowedMethods) {
 // Check allowed origins.
 export function isAllowedOrigin(origin, allowedOrigins, secFetchSite) {
   if (isLocal()) return true;
-  if (!allowedOrigins.includes(origin)) return false;
+  if (allowedOrigins.includes(origin)) return true;
   return secFetchSite === 'same-origin';
 }
 
