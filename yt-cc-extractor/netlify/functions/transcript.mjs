@@ -48,10 +48,15 @@ function buildCleanData(upstream) {
 export default async function handler(req, context) {
   const method = req.method;
   const origin = req.headers.get('origin');
+  const secFetchSite = req.headers.get('sec-fetch-site');
   const url = new URL(req.url);
 
-  if (!isAllowedMethod(method, ALLOWED_METHODS) || !isAllowedOrigin(origin, ALLOWED_ORIGINS))
+  if (
+    !isAllowedMethod(method, ALLOWED_METHODS) ||
+    !isAllowedOrigin(origin, ALLOWED_ORIGINS, secFetchSite)
+  ) {
     return jsonResponse({ code: 403 });
+  }
 
   // Preflight
   if (method === 'OPTIONS') {

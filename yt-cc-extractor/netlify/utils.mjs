@@ -7,11 +7,6 @@ export function inferHttpMessage(code) {
   return statuses.message[code] || 'Unknown Status';
 }
 
-// Detect Netlify local dev.
-export function isLocal() {
-  return process.env.NETLIFY_DEV === 'true';
-}
-
 // Build consistent JSON responses.
 export function jsonResponse({ code, message, data = null, headers = {} }) {
   const resolvedMessage = message || inferHttpMessage(code);
@@ -25,14 +20,21 @@ export function jsonResponse({ code, message, data = null, headers = {} }) {
   return new Response(json, { status: code, headers: mergedHeaders });
 }
 
+// Detect Netlify local dev.
+export function isLocal() {
+  return process.env.NETLIFY_DEV === 'true';
+}
+
 // Check allowed HTTP methods.
 export function isAllowedMethod(method, allowedMethods) {
   return allowedMethods.includes(method);
 }
 
 // Check allowed origins.
-export function isAllowedOrigin(origin, allowedOrigins) {
-  return isLocal() || allowedOrigins.includes(origin);
+export function isAllowedOrigin(origin, allowedOrigins, secFetchSite) {
+  if (isLocal()) return true;
+  if (!allowedOrigins.includes(origin)) return false;
+  return secFetchSite === 'same-origin';
 }
 
 // Verify API key.
