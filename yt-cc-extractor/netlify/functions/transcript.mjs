@@ -51,10 +51,13 @@ export default async function handler(req, context) {
   const secFetchSite = req.headers.get('sec-fetch-site');
   const url = new URL(req.url);
 
-  if (
-    !isAllowedMethod(method, ALLOWED_METHODS) ||
-    !isAllowedOrigin(origin, ALLOWED_ORIGINS, secFetchSite)
-  ) {
+  console.log({ secFetchSite });
+
+  if (!isAllowedMethod(method, ALLOWED_METHODS)) {
+    return jsonResponse({ code: 405 });
+  }
+
+  if (!isAllowedOrigin(origin, ALLOWED_ORIGINS, secFetchSite)) {
     return jsonResponse({ code: 403 });
   }
 
