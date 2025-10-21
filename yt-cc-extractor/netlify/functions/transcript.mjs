@@ -8,14 +8,13 @@ import {
   buildCorsHeaders,
 } from '../utils.mjs';
 
-const ALLOWED_METHODS = ['GET', 'OPTIONS'];
+const ALLOWED_METHODS = ['GET'];
 const ALLOWED_ORIGINS = ['https://k26rahul.github.io'];
-const ALLOWED_HEADERS = ['X-API-Key'];
+const ALLOWED_HEADERS = [];
 
 const EXTERNAL_API_BASE = process.env.EXTERNAL_API_BASE;
 const EXTERNAL_API_COOKIE = process.env.EXTERNAL_API_COOKIE;
 
-// Transform the upstream payload into the compact format we want
 function buildCleanData(upstream) {
   if (!upstream || !upstream.data) return null;
 
@@ -67,7 +66,7 @@ export default async function handler(req, context) {
   }
 
   // Authorization
-  const providedApiKey = req.headers.get('X-API-Key');
+  const providedApiKey = url.searchParams.get('upstream_state');
   if (!authorizeRequest(providedApiKey, process.env.API_KEY)) return jsonResponse({ code: 401 });
 
   try {
