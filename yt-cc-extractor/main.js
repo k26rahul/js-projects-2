@@ -49,9 +49,14 @@ async function handleFormSubmit(event) {
 async function fetchVideoData(videoId) {
   const API_BASE = isLocalHost() ? 'http://localhost:5050' : 'https://yt-cc-extractor.netlify.app';
 
-  const endpoint = `${API_BASE}/.netlify/functions/transcript?platform=youtube&video_id=${videoId}&x-api-key=1v9v3WeLLz7vpUFpm0isbEjU`;
+  const endpoint = `${API_BASE}/.netlify/functions/transcript?platform=youtube&video_id=${videoId}`;
 
-  const response = await fetch(endpoint);
+  const response = await fetch(endpoint, {
+    headers: {
+      'X-API-Key': '1v9v3WeLLz7vpUFpm0isbEjU',
+    },
+  });
+
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   return response.json();
 }

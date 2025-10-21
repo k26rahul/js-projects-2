@@ -44,10 +44,10 @@ export function authorizeRequest(providedApiKey, expectedApiKey) {
 }
 
 // Build standard CORS headers.
-export function buildCorsHeaders(origin, allowedMethods) {
+export function buildCorsHeaders(origin, allowedMethods, allowedHeaders) {
   return {
     'Access-Control-Allow-Origin': origin,
     'Access-Control-Allow-Methods': allowedMethods.join(', '),
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': allowedHeaders.join(', '),
   };
 }

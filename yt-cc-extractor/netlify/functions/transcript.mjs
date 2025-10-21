@@ -9,7 +9,8 @@ import {
 } from '../utils.mjs';
 
 const ALLOWED_METHODS = ['GET', 'OPTIONS'];
-const ALLOWED_ORIGINS = ['https://k26rahul.github.io', 'https://yt-cc-extractor.netlify.app'];
+const ALLOWED_ORIGINS = ['https://k26rahul.github.io'];
+const ALLOWED_HEADERS = ['Content-Type', 'X-API-Key'];
 
 const EXTERNAL_API_BASE = process.env.EXTERNAL_API_BASE;
 const EXTERNAL_API_COOKIE = process.env.EXTERNAL_API_COOKIE;
@@ -51,8 +52,6 @@ export default async function handler(req, context) {
   const secFetchSite = req.headers.get('sec-fetch-site');
   const url = new URL(req.url);
 
-  console.log({ secFetchSite });
-
   if (!isAllowedMethod(method, ALLOWED_METHODS)) {
     return jsonResponse({ code: 405 });
   }
@@ -63,12 +62,12 @@ export default async function handler(req, context) {
 
   // Preflight
   if (method === 'OPTIONS') {
-    const headers = buildCorsHeaders(origin, ALLOWED_METHODS);
+    const headers = buildCorsHeaders(origin, ALLOWED_METHODS, ALLOWED_HEADERS);
     return new Response(null, { status: 204, headers });
   }
 
   // Authorization
-  const providedApiKey = url.searchParams.get('x-api-key');
+  const providedApiKey = req.headers.get('X-API-Key');
   if (!authorizeRequest(providedApiKey, process.env.API_KEY)) return jsonResponse({ code: 401 });
 
   try {
@@ -88,7 +87,7 @@ export default async function handler(req, context) {
       code: 200,
       message: 'Transcript fetched successfully',
       data: buildCleanData(upstream),
-      headers: buildCorsHeaders(origin, ALLOWED_METHODS),
+      headers: buildCorsHeaders(origin, ALLOWED_METHODS, ALLOWED_HEADERS),
     });
   } catch {
     return jsonResponse({ code: 500 });
